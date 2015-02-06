@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+
+    <title>The power of ES6</title>
+
+    <meta name="description" content="A slide-deck showcasing the power of ES6">
+    <meta name="author" content="Charles King">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/reveal.css">
+    <link rel="stylesheet" href="assets/css/theme/night.css" id="theme">
+
+
+    <link rel="stylesheet" href="assets/css/pres.css">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'assets/css/print/pdf.css' : 'assets/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h1>The power of ECMAScript 6</h1>
+
+            <p>
+                <small>Created by <a href="http://hakim.se">Charles King</a> / <a
+                        href="http://twitter.com/thebringking">@thebringking</a></small>
+            </p>
+        </section>
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input">function foo(items) {
+                var x = "All this is syntax highlighted";
+                return x;
+                }
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5</h3>
+            </div>
+            <div class="editor-output">
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="assets/js/reveal.js"></script>
+<script src="assets/js/6to5/browser.js"></script>
+<script src="assets/js/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/pres.js"></script>
+
+</body>
+</html>
