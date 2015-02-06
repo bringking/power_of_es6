@@ -1,15 +1,23 @@
-.editor-input-header, .editor-output-header {
+.editor-input-header, .editor-output-header, .editor-result-header {
     top: 0 !important;
 }
 
+.editor-result-header, .editor-result-output {
+    left: 80%;
+    right: 0;
+}
+.editor-result-output {
+ bottom:50% !important;
+}
+
 .editor-input, .editor-input-header {
-    right: 51%;
+    right: 56%;
     left: 0;
 }
 
 .editor-output, .editor-output-header {
-    right: 0;
-    left: 51%;
+    right: 21%;
+    left: 45%;
 }
 
 [class*='editor-'] {
@@ -18,7 +26,6 @@
     bottom: 24px;
     text-align: left;
     font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
-
 }
 
 [class*='editor-'] .ace_cursor {

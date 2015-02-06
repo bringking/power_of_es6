@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function( event ) {
+
     // Full list of configuration options available at:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
 
         ]
     });
+
 
     /**
      * Transform ES6 text to ES5.1 using 6to5
@@ -48,30 +50,53 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         var foundInput = slideElement.querySelectorAll(".editor-input")[0];
         //get the output editor
         var foundOutput = slideElement.querySelectorAll(".editor-output")[0];
-        var input, output;
+
+        //get the result editor
+        var foundResult = slideElement.querySelectorAll(".editor-result-output")[0];
+
+        var input, output, result;
 
         //attach the ace editor
         if ( foundInput ) {
             input = ace.edit(foundInput);
             input.setTheme("ace/theme/monokai");
             input.getSession().setMode("ace/mode/javascript");
-
+            input.getSession().setUseWrapMode(true);
         }
         //attach the ace editor
         if ( foundOutput ) {
             output = ace.edit(foundOutput);
             output.setTheme("ace/theme/monokai");
             output.getSession().setMode("ace/mode/javascript");
+            output.getSession().setUseWrapMode(true);
             //set the initial value
             output.setValue(transformText(input.getValue()), 0);
+        }
+        //attach the ace editor
+        if ( foundResult ) {
+            result = ace.edit(foundResult);
+            result.setTheme("ace/theme/monokai");
+            result.getSession().setMode("ace/mode/javascript");
+            result.getSession().setUseWrapMode(true);
         }
 
         //listen for changes and parse
         if ( input && output ) {
             input.on("change", function() {
                 //set the new value
-                output.setValue(transformText(input.getValue()), 0);
+                var newVal = transformText(input.getValue());
+                if ( newVal ) {
+                    output.setValue(newVal, 0);
+                    try{
+                        var resultStr = eval(newVal)();
+                        result.setValue(resultStr,0);
+                    } catch(e) {
+
+                    }
+
+                }
             });
+
         }
 
     }
@@ -82,5 +107,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
     });
 
     //setup slides for initial load
+
     setupEditors(document.querySelectorAll(".present")[0]);
+
 });
