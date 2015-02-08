@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             //set the initial value
             output.setValue(transformText(input.getValue()), 0);
 
+
         }
         //attach the ace editor
         if ( foundResult ) {
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             input.on("change", function() {
 
                 //set the new value
-                var newVal, resultStr;
+                var newVal, evalOutput;
 
                 //get the ES5 transformed value
                 newVal = native
@@ -113,10 +114,10 @@ document.addEventListener("DOMContentLoaded", function( event ) {
 
                     try {
                         //eval the result
-                        resultStr = eval(newVal)();
+                        evalOutput = eval(newVal)();
 
                         //set the value of the results window
-                        result.setValue(resultStr, 0);
+                        result.setValue(JSON.stringify(evalOutput), 0);
                     } catch ( e ) {
                         console.error(e);
                     }

@@ -160,7 +160,6 @@
         <!-- arrow functions -->
         <section>
             <h3>Arrow functions </h3>
-
             <p>
                 A function shorthand or Lambda using the fat-arrow " => " syntax.
             </p>
@@ -212,22 +211,212 @@
         <!-- string templates -->
         <section>
             <h3>String templates </h3>
+            <p>
+                Allows for string literals with embedded expression interpolation.
+            </p>
+            <p>
+                Multi-line strings!
+            </p>
+        </section>
+             <!-- string templates examples -->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input">
+(function() {
+
+     //some vars
+     var firstName = "Charlie",
+         lastName = "King";
+
+     //return our string literal
+     return `${firstName} ${lastName} is talking about ES6
+on ${ new Date().toISOString()}`;
+
+
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5</h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Let scope -->
         <section>
-            <h3><strong>let</strong> scope </h3>
+            <h3>let scope</h3>
+            <p>
+                Allows for the definition of variables that are limited in scope to the block
+            </p>
+            <p>
+                No more hoisting
+            </p>
+        </section>
+                 <!-- let examples -->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input">
+(function() {
+
+ let x = 31;
+  if (true) {
+    let x = 71;  // different variable
+  }
+  return x; // 31
+
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5</h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- const-->
         <section>
             <h3>const</h3>
+            <p>
+                Read only, named variables
+            </p>
+            <p>
+                Block scoped
+            </p>
+        </section>
+                         <!-- const examples -->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input">
+(function() {
+
+ const apiBase = "http://mysite.com/api/v1";
+ const clientId = "Adxk38dn3c9u1ndk";
+
+ 
+ function createBaseUrl (url, id) {
+   return `${url}?clientId=${id}`
+ }
+
+ //block scoped
+ if (true) {
+    const apiBase = "http://mysite.com/api/v2";
+ }
+ 
+ //create url
+ return createBaseUrl(apiBase,clientId);
+
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5</h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Destructuring assignments-->
         <section>
             <h3>Destructuring assignments</h3>
+            <p>Destructure: <q>To dismantle the structure of something</q></p>
+            <p>
+                Object and Array destructuring
+             </p>
+        </section>
+                <!-- Destructuring assignments examples-->
+                <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input">
+(function() {
+ 
+    //works on arrays, or objects
+    function getName(args) {
+
+
+        if ( Array.isArray(args) ) {
+
+            //destructure and assignthe first and second element of the array
+            var [firstName,lastName] = args;
+
+        } else {
+
+            //destructure and assign the firstName key and lastName key
+            var {firstName,lastName} = args;
+
+        }
+        
+        
+        return `${firstName} ${lastName}`;
+
+    }
+
+
+    //you can skip elements
+    let items = [ 1,2,3,4,5 ];
+    let [,second, third, fourth] = items;
+
+    //useful for selecting keys inside an expression
+    var books = [
+        {   name:"Javascript: The Good Parts",  ISBN:1224283},
+        {   name: "Effective Javascript",   ISBN:128263},
+        {   name: "The Principles of Object-Oriented JavaScript",   ISBN:122663}
+    ];
+
+    //grab just the names
+    var bookNames = books.map( ({name}) => name);
+
+
+
+     
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5</h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Object literals-->
         <section>
             <h3>Object literals</h3>
+            <p>New property value shortand syntax</p>
+        </section>
+                      <!-- Destructuring assignments examples-->
+                <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input">
+(function() {
+ 
+    //define so vars
+    let name = "Charlie",
+        age = 29;
+
+    //add the keys+value as shorthand syntax    
+    return {name, age, height:180};    
+     
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5</h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Default args-->
         <section>
