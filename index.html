@@ -45,22 +45,141 @@
                         href="http://twitter.com/thebringking">@thebringking</a></small>
             </p>
         </section>
+        <section >
+           <h3>Who am I?</h3>
+            <p>
+                <img height="238" data-src="https://avatars2.githubusercontent.com/u/864845?v=3&s=460" alt="Me">
+            </p>
+             <ul>
+                <li> Husband and father of two </li>
+                <li> Software Engineer for ~nine years </li>
+                <li> Web stuff for ~three years </li>
+                <li> Work for Elegant Thought </li>
+             </ul>
+        </section>
+        <section>
+           <h3>ECMAScript</h3>
+           <p class="fragment">ES3 </p>
+           <p class="fragment">ES5.1</p>
+           <p class="fragment">ES6</p>
+        </section>
+        <!-- arrow functions -->
+        <section >
+           <h3>Arrow functions </h3>
+            <p>
+                A function shorthand or Lambda using the fat-arrow " => " syntax.
+            </p>
+             <p>
+                Not just syntax sugar. Arrow functions automatically bind "this" from the containing scope.
+            </p>
+        </section>
+        <!-- arrow functions examples -->
         <section class="full">
             <div class="editor-input-header">
                 <h3>ES6</h3>
             </div>
-            <div class="editor-input">function foo(items) {
-                var x = "All this is syntax highlighted";
-                return x;
-                }
+            <div class="editor-input">
+(function() {
+
+    //array
+    var items = [1,2,3,4];
+
+    //expression bodies or lambda
+    var byTwo = items.map( (i) => i*2);
+
+    //with a block
+    var byFour = items.map( (i) => {
+        return i * 4;
+    });
+
+    //lexical this
+    function Dog() {
+      this.name = "Dog";
+      this.nickNames = ["Fluffy", "Scruffy", "Biscuit"]  
+      this.print = function () {
+          return this.nickNames.map( (n) => {
+            return this.name + " is nicknamed " + n;
+          });
+      };
+    }
+    
+});
             </div>
             <div class="editor-output-header">
                 <h3>ES5</h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-header">
-                <h3>Result</h3>
+            <div class="editor-result-output">
+            </div>
+        </section>
+          <!-- string templates -->
+        <section >
+           <h3>String templates </h3>
+        </section>
+        <!-- Let scope -->
+        <section >
+           <h3><strong>let</strong> scope </h3>
+        </section>
+        <!-- const-->
+        <section >
+           <h3>const</h3>
+        </section>
+        <!-- Destructuring assignments-->
+        <section >
+           <h3>Destructuring assignments</h3>
+        </section>
+        <!-- Object literals-->
+        <section >
+           <h3>Object literals</h3>
+        </section>
+        <!-- Default args-->
+        <section >
+           <h3>Default args</h3>
+        </section>
+        <!-- Spread operator-->
+        <section >
+           <h3>Spread operator</h3>
+        </section>
+        <!-- Spread operator-->
+        <section >
+           <h3>Spread operator</h3>
+        </section>
+        <!-- Classes-->
+        <section >
+           <h3>Classes</h3>
+        </section>
+        <!-- Generators-->
+        <section >
+           <h3>Generators</h3>
+        </section>
+        <!-- Generators examples -->
+        <section class="full">
+            <div class="editor-input-header large">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input large native">
+
+(function() {
+    
+    //generator
+    function* idMaker() {
+        var index = 0;
+        while(true)
+            yield index++;
+    }
+
+    //create new generator iterator
+    var gen = idMaker();
+    
+    //grab some IDs
+    var ids = [gen.next().value,gen.next().value,gen.next().value];
+
+    //print result
+    //return ids.toString();
+    
+});                
+                          
             </div>
             <div class="editor-result-output">
             </div>
@@ -68,6 +187,7 @@
     </div>
 </div>
 
+<script src="assets/js/head.min.js"></script>
 <script src="assets/js/reveal.js"></script>
 <script src="assets/js/6to5/browser.js"></script>
 <script src="assets/js/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>

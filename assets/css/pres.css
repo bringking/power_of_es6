@@ -1,29 +1,33 @@
-.editor-input-header, .editor-output-header, .editor-result-header {
+.editor-input-header, .editor-output-header {
     top: 0 !important;
 }
-
-.editor-result-header, .editor-result-output {
-    left: 80%;
-    right: 0;
-}
-.editor-result-output {
- bottom:50% !important;
+.editor-result-output{
+    bottom: 12px;
+    height:125px;
+    left:0;
+    right:0;
 }
 
 .editor-input, .editor-input-header {
-    right: 56%;
+    right: 51%;
     left: 0;
+    top: 24px;
+    bottom: 150px;
+
+}
+.editor-input.large,.editor-input-header.large{
+    right:0;
 }
 
 .editor-output, .editor-output-header {
-    right: 21%;
-    left: 45%;
+    right: 0%;
+    left: 51%;
+    top: 24px;
+    bottom: 150px;
 }
 
 [class*='editor-'] {
     position: absolute !important;
-    top: 24px;
-    bottom: 24px;
     text-align: left;
     font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
 }
