@@ -173,7 +173,7 @@
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
 
     //array
@@ -200,8 +200,8 @@
 
 });
             </div>
-            <div class="editor-output-header">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5 <span class="expand" >&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -223,7 +223,7 @@
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
 
      //some vars
@@ -237,7 +237,7 @@ on ${ new Date().toISOString()}`;
 
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -260,7 +260,7 @@ on ${ new Date().toISOString()}`;
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
 
  let x = 31;
@@ -271,7 +271,7 @@ on ${ new Date().toISOString()}`;
 
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -294,7 +294,7 @@ on ${ new Date().toISOString()}`;
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
 
  const apiBase = "http://mysite.com/api/v1";
@@ -315,7 +315,7 @@ on ${ new Date().toISOString()}`;
 
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -336,7 +336,7 @@ on ${ new Date().toISOString()}`;
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
  
     //works on arrays, or objects
@@ -369,7 +369,7 @@ on ${ new Date().toISOString()}`;
 
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -387,7 +387,7 @@ on ${ new Date().toISOString()}`;
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
  
     //define so vars
@@ -399,7 +399,7 @@ on ${ new Date().toISOString()}`;
      
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -422,7 +422,7 @@ on ${ new Date().toISOString()}`;
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
  
 
@@ -448,7 +448,7 @@ on ${ new Date().toISOString()}`;
      
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -472,7 +472,7 @@ on ${ new Date().toISOString()}`;
             <div class="editor-input-header">
                 <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
-            <div class="editor-input">
+            <div class="editor-input expanded">
 (function() {
  
 
@@ -504,7 +504,7 @@ on ${ new Date().toISOString()}`;
      
 });
             </div>
-            <div class="editor-output-header">
+            <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
@@ -515,10 +515,85 @@ on ${ new Date().toISOString()}`;
         <!-- Classes-->
         <section>
             <h3>Classes</h3>
+            <p>
+                A formal inheritance syntax comes to JavaScript
+            </p>
+            <p>
+                Really just syntactical sugar over JS prototypical inheritance
+            </p>
+        </section>
+        <!-- classes examples-->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input expanded">
+(function() {
+
+    //create a logger facade
+    class Logger {
+        constructor( level = "Info" ) {
+            this.level = level;
+        }
+        log ( message ) {
+            let msg = `%c ${new Date().toISOString()}: ${message}`;
+            switch ( this.level ) {
+                case "Info":
+                    console.log(msg, 'background:#659cef;color:#fff;font-size:14px;');
+                    break;
+                case "Error":
+                    console.log(msg,'background: red; color: #fff;font-size:14px;');
+                    break;
+                case "Debug":
+                    console.log(msg,'background: #e67e22; color:#fff; font-size:14px;');
+                      break;
+                case "Dir":
+                    console.dir(msg);
+                      break;            
+                default:
+                    console.log(msg);    
+            }
+        }
+    }
+
+    //create an instance of our logger
+    var appLogger = new Logger("Debug");
+    appLogger.log("Hello");
+
+    //extend it
+    class BetterLogger extends Logger {
+        log(message,level) {
+            this.level = level;
+            super.log(message);
+        }
+    }
+    //create instance of our better logger
+    var appBetterLogger = new BetterLogger("Debug");
+    appBetterLogger.log("BetterLogger","Info");
+
+});
+            </div>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Generators-->
         <section>
             <h3>Generators</h3>
+              <p>
+                Introduces functions that "yield" control flow 
+            </p>
+            <p>
+                Seen in other languages like C#, Python
+            </p>
+            <p>
+                Looks like a function, however it returns an iterator object
+            </p>
+     
         </section>
         <!-- Generators examples -->
         <section class="full">
@@ -527,25 +602,71 @@ on ${ new Date().toISOString()}`;
             </div>
             <div class="editor-input large native">
 
-                (function() {
+(function() {
 
-                //generator
-                function* idMaker() {
-                var index = 0;
-                while(true)
-                yield index++;
-                }
+    //generator
+    function* idMaker (idx) {
 
-                //create new generator iterator
-                var gen = idMaker();
+        var index = idx || 0;
 
-                //grab some IDs
-                var ids = [gen.next().value,gen.next().value,gen.next().value];
+        //infinite loop!
+        while ( true ) {
+            //get the value of next, and yield next index
+            var reset = yield index++;
+            //did they ask for a reset?
+            if (reset) {
+                index = idx || 0;
+            }
 
-                //print result
-                //return ids.toString();
+        }
+            
+    }
 
-                });
+    //create new generator iterator, notice no 'new'
+    var gen = idMaker();
+
+    //grab some IDs
+    //each next returns  > { value: val, done: false }
+    var ids = [gen.next(),gen.next(),gen.next()];
+
+    //print result
+    //return ids;
+
+    //reset Ids back to zero
+    //return gen.next(true);
+
+});
+
+            </div>
+            <div class="editor-result-output">
+            </div>
+        </section>
+        <!-- Generators examples -->
+        <section class="full">
+            <div class="editor-input-header large">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input large native">
+//advanced example from - http://modernweb.com/2014/02/10/replacing-callbacks-with-es6-generators/
+
+function delay(time, callback) {
+  setTimeout(function () {
+    callback("Slept for "+time);
+  }, time);
+}
+
+function run(generatorFunction) {
+    var generatorItr = generatorFunction(resume);
+    function resume(callbackValue) {
+        generatorItr.next(callbackValue);
+    }
+    generatorItr.next()
+}
+
+run(function* myDelayedMessages(resume) {
+    console.log(yield delay(1000, resume));
+    console.log(yield delay(1200, resume));
+})
 
             </div>
             <div class="editor-result-output">
@@ -554,10 +675,175 @@ on ${ new Date().toISOString()}`;
         <!-- Modules-->
         <section>
             <h3>Modules</h3>
+            <p>
+                Standardized method for modularizing your JS code
+            </p>
+            <p>
+                Borrows concepts from Asynchronous Module Definition (AMD) and CommonJS Modules
+            </p>
+            <p>
+                Compact like CommonJS, async like AMD
+            </p>
+        </section>
+                <!-- Modules cont.-->
+        <section>
+            <h3>Modules</h3>
+            <p>
+                No more UMD!
+            </p>
+            <pre>
+                <code>
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+
+        define(['b'], function (b) {
+            return (root.returnExportsGlobal = factory(b));
+        });
+
+    } else if (typeof exports === 'object') {
+
+        module.exports = factory(require('b'));
+    } else {
+
+        root.returnExportsGlobal = factory(root.b);
+    }
+}(this, function (b) {
+
+    //finally do actual work
+    return {};
+
+}));
+                </code>
+            </pre>
+        </section>
+        <!-- Modules examples -->
+     <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input expanded">
+    //Exporting
+
+    //export vars
+    export var falsy = 0;
+
+    //export let
+    export let truthy = 1;
+
+    //export contstants
+    export const read_only = "String";
+
+    //export functions
+    export function noop() {
+        
+    }
+
+    //or generators
+    export function* noopGen() {
+
+    }
+
+    //or classes
+    export class Test {
+        
+    }
+
+            </div>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
+        </section>
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input expanded">
+//Importing
+
+  // Default exports and named exports
+    import taskjs, { spawn, enqueue } from 'task';
+    import taskjs from 'task';
+    import { spawn, enqueue } from 'task';
+    
+    //import spawn as s
+    import { spawn as s, enqueue } from 'task';
+    
+    //entire module as an object
+    import * as task from 'task';
+    
+    //load the module, don’t import anything
+    import 'task';
+
+            </div>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
+        </section>
+    <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input expanded">
+//import config
+
+  System.import('task')
+    .then(task => {
+        //do stuff with task
+    })
+    .catch(error => {
+        
+    });
+            </div>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Promises -->
         <section>
             <h3>Promises</h3>
+              <p>
+                Promises are objects that represent an eventual result.
+            </p>
+            <p>
+                Lets asynchronous methods return values like synchronous methods
+            </p>
+            <p>
+                Compact like CommonJS, async like AMD
+            </p>
+        </section>
+            <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input large native">
+    function someLongTask() {
+
+        return new Promise( function(resolve,reject){
+                        setTimeout(function(){
+                resolve("someLongTask");
+            },1000);
+        });
+
+    } 
+   
+    someLongTask().then(function(msg){
+        console.log(msg);
+    });
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Map, Set, WeakMap, WeakSet -->
         <section>

@@ -14,18 +14,18 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             //find the other header
             var otherHeader;
             if (parentHeader.hasClass("editor-input-header")) {
-                 otherHeader = parentHeader.siblings(".editor-output-header");
+                 otherHeader = $(parentHeader.siblings(".editor-output-header"));
             } else {
-                 otherHeader = parentHeader.siblings(".editor-input-header");
+                 otherHeader = $(parentHeader.siblings(".editor-input-header"));
             }
 
             //add classes to editor
             if (editor.classList.contains("expanded")) {
                editor.classList.remove("expanded");
-               otherHeader.show();
+               otherHeader.css({visibility : "visible"});
             } else {
                 editor.classList.add("expanded");
-                otherHeader.hide();
+                otherHeader.css({visibility : "hidden"});
             }
 
             //trigger resize
@@ -70,14 +70,14 @@ document.addEventListener("DOMContentLoaded", function( event ) {
     /**
      * Transform ES6 text to ES5.1 using 6to5
      */
-    function transformText( input ) {
+    function transformText( input, opts ) {
         var parsed = "";
         try {
-            parsed = to5.transform(input).code;
+            parsed = to5.transform(input,opts).code;
         }
         catch ( err ) {
-            console.error(err);
-            console.log("didn't set output because it errored");
+            //console.error(err);
+            //console.log("didn't set output because it errored");
         }
 
         return parsed;
@@ -108,7 +108,10 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             input.setTheme("ace/theme/monokai");
             input.getSession().setMode("ace/mode/javascript");
             input.getSession().setUseWrapMode(false);
-
+            input.setShowPrintMargin(false);
+            input.setDisplayIndentGuides(false);
+            input.renderer.setShowGutter(false);
+            input.setHighlightActiveLine(false);
             native = foundInput.className.indexOf("native") > -1;
         }
         //attach the ace editor
@@ -118,9 +121,17 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             output.setTheme("ace/theme/monokai");
             output.getSession().setMode("ace/mode/javascript");
             output.getSession().setUseWrapMode(false);
-
+            output.setShowPrintMargin(false);
+            output.setDisplayIndentGuides(false);
+            output.renderer.setShowGutter(false);
+            output.setHighlightActiveLine(false);
             //set the initial value
-            output.setValue(transformText(input.getValue()), 0);
+            if (foundInput.classList.contains("amd")) {
+                output.setValue(transformText(input.getValue(),{modules:"amd"}), 0);
+            } else {
+                output.setValue(transformText(input.getValue(),{modules:"common"}), 0);
+            }
+
 
         }
         //attach the ace editor
@@ -128,7 +139,11 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             result = ace.edit(foundResult);
             result.setTheme("ace/theme/monokai");
             result.getSession().setUseWrapMode(true);
+            result.setShowPrintMargin(false);
             result.setReadOnly(true);
+            result.setDisplayIndentGuides(false);
+            result.renderer.setShowGutter(false);
+            result.setHighlightActiveLine(false);
         }
 
         //listen for changes and parse
@@ -138,10 +153,19 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                 //set the new value
                 var newVal, evalOutput;
 
+                //set the initial value
+                var opts;
+                if (foundInput.classList.contains("amd")) {
+                    opts = {modules:"amd"};
+                } else {
+                    opts = {modules:"common"};
+                }
+
+
                 //get the ES5 transformed value
                 newVal = native
                     ? input.getValue()
-                    : transformText(input.getValue());
+                    : transformText(input.getValue(),opts);
 
                 if ( newVal ) {
                     //if there is an output window, set the value

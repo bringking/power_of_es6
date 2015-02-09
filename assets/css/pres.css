@@ -40,7 +40,7 @@
     left: 51%;
     top: 24px;
     bottom: 150px;
-    transition: all 250ms ease-in;
+    transition: left 250ms ease-in;
 }
 
 .editor-output.expanded {
@@ -50,7 +50,7 @@
 [class*='editor-'] {
     position: absolute !important;
     text-align: left;
-    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
+    font: 16px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
 }
 
 [class*='editor-'] .ace_cursor {
