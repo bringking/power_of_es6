@@ -171,7 +171,7 @@
         <!-- arrow functions examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input">
 (function() {
@@ -201,7 +201,7 @@
 });
             </div>
             <div class="editor-output-header">
-                <h3>ES5</h3>
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -221,7 +221,7 @@
              <!-- string templates examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input">
 (function() {
@@ -238,7 +238,7 @@ on ${ new Date().toISOString()}`;
 });
             </div>
             <div class="editor-output-header">
-                <h3>ES5</h3>
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -258,7 +258,7 @@ on ${ new Date().toISOString()}`;
                  <!-- let examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input">
 (function() {
@@ -272,7 +272,7 @@ on ${ new Date().toISOString()}`;
 });
             </div>
             <div class="editor-output-header">
-                <h3>ES5</h3>
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -292,7 +292,7 @@ on ${ new Date().toISOString()}`;
                          <!-- const examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input">
 (function() {
@@ -316,7 +316,7 @@ on ${ new Date().toISOString()}`;
 });
             </div>
             <div class="editor-output-header">
-                <h3>ES5</h3>
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -326,7 +326,7 @@ on ${ new Date().toISOString()}`;
         <!-- Destructuring assignments-->
         <section>
             <h3>Destructuring assignments</h3>
-            <p>Destructure: <q>To dismantle the structure of something</q></p>
+            <p>Destructure: <q>To dismantle/destroy the structure of something</q></p>
             <p>
                 Object and Array destructuring
              </p>
@@ -334,7 +334,7 @@ on ${ new Date().toISOString()}`;
                 <!-- Destructuring assignments examples-->
                 <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input">
 (function() {
@@ -342,24 +342,16 @@ on ${ new Date().toISOString()}`;
     //works on arrays, or objects
     function getName(args) {
 
-
         if ( Array.isArray(args) ) {
-
-            //destructure and assignthe first and second element of the array
+            //assign the first and second element of the array
             var [firstName,lastName] = args;
-
         } else {
-
-            //destructure and assign the firstName key and lastName key
+            //assign the firstName key and lastName key
             var {firstName,lastName} = args;
-
         }
         
-        
         return `${firstName} ${lastName}`;
-
     }
-
 
     //you can skip elements
     let items = [ 1,2,3,4,5 ];
@@ -367,21 +359,18 @@ on ${ new Date().toISOString()}`;
 
     //useful for selecting keys inside an expression
     var books = [
-        {   name:"Javascript: The Good Parts",  ISBN:1224283},
-        {   name: "Effective Javascript",   ISBN:128263},
-        {   name: "The Principles of Object-Oriented JavaScript",   ISBN:122663}
+        {   name:"Javascript: The Good Parts", ISBN:1224283},
+        {   name: "Effective Javascript", ISBN:128263},
+        {   name: "The Principles of Object-Oriented JavaScript", ISBN:122663}
     ];
 
     //grab just the names
     var bookNames = books.map( ({name}) => name);
 
-
-
-     
 });
             </div>
             <div class="editor-output-header">
-                <h3>ES5</h3>
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -396,7 +385,7 @@ on ${ new Date().toISOString()}`;
                       <!-- Destructuring assignments examples-->
                 <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input">
 (function() {
@@ -411,7 +400,7 @@ on ${ new Date().toISOString()}`;
 });
             </div>
             <div class="editor-output-header">
-                <h3>ES5</h3>
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -421,6 +410,51 @@ on ${ new Date().toISOString()}`;
         <!-- Default args-->
         <section>
             <h3>Default args</h3>
+             <p>
+                Define default parameters for functions
+             </p>
+              <p>
+                Encloses the outer scope
+             </p>
+        </section>
+            <!-- Default args examples-->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input">
+(function() {
+ 
+
+    function getApiUrl (resource, base = "http://b.com/api") {
+        return `${base}/${resource}`;
+    }
+  
+
+    let staticBase = "http://b.com/content";
+
+    //you can utilize outer scope
+    function getStaticUrl (resource, base = staticBase) {
+        return `${base}/${resource}`;
+    }
+
+    //or arbitrary expressions
+    function getThumb(resource, width, height, dpi = width*height/10 ) {
+
+        return `${staticBase}/${resource}?width=${width}&height=${height}&dpi=${dpi}`;
+
+    }
+
+     
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Spread operator-->
         <section>
@@ -441,7 +475,7 @@ on ${ new Date().toISOString()}`;
         <!-- Generators examples -->
         <section class="full">
             <div class="editor-input-header large">
-                <h3>ES6</h3>
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
             </div>
             <div class="editor-input large native">
 
@@ -487,7 +521,7 @@ on ${ new Date().toISOString()}`;
         </section>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
 <script src="assets/js/head.min.js"></script>
 <script src="assets/js/reveal.js"></script>
 <script src="assets/js/6to5/browser.js"></script>

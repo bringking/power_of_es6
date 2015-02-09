@@ -1,5 +1,40 @@
 document.addEventListener("DOMContentLoaded", function( event ) {
 
+    var currentInputEditor, currentOutputEditor;
+
+    //attach click handler to expanders
+    var expanders = document.querySelectorAll(".expand");
+    for ( var i = 0; i < expanders.length; i++ ) {
+        var x = expanders[i];
+        x.addEventListener("click", function() {
+
+            var editor = this.offsetParent.nextElementSibling;
+            var parentHeader = $(this.offsetParent);
+
+            //find the other header
+            var otherHeader;
+            if (parentHeader.hasClass("editor-input-header")) {
+                 otherHeader = parentHeader.siblings(".editor-output-header");
+            } else {
+                 otherHeader = parentHeader.siblings(".editor-input-header");
+            }
+
+
+            //add classes to editor
+            if (editor.classList.contains("expanded")) {
+               editor.classList.remove("expanded");
+               otherHeader.show();
+            } else {
+                editor.classList.add("expanded");
+                otherHeader.hide();
+            }
+
+            //trigger resize
+            currentInputEditor.resize();
+            currentOutputEditor.resize();
+        });
+    }
+
     // Full list of configuration options available at:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
@@ -55,8 +90,10 @@ document.addEventListener("DOMContentLoaded", function( event ) {
      * @param slideElement
      */
     function setupEditors( slideElement ) {
+
         //get the input editor
         var foundInput = slideElement.querySelectorAll(".editor-input")[0];
+
         //get the output editor
         var foundOutput = slideElement.querySelectorAll(".editor-output")[0];
 
@@ -68,22 +105,23 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         //attach the ace editor
         if ( foundInput ) {
             input = ace.edit(foundInput);
+            currentInputEditor = input;
             input.setTheme("ace/theme/monokai");
             input.getSession().setMode("ace/mode/javascript");
-            input.getSession().setUseWrapMode(true);
+            input.getSession().setUseWrapMode(false);
 
             native = foundInput.className.indexOf("native") > -1;
         }
         //attach the ace editor
         if ( foundOutput ) {
             output = ace.edit(foundOutput);
+            currentOutputEditor = output;
             output.setTheme("ace/theme/monokai");
             output.getSession().setMode("ace/mode/javascript");
-            output.getSession().setUseWrapMode(true);
+            output.getSession().setUseWrapMode(false);
 
             //set the initial value
             output.setValue(transformText(input.getValue()), 0);
-
 
         }
         //attach the ace editor

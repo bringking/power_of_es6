@@ -1,11 +1,21 @@
+.expanded {
+
+    z-index: 9999;
+}
+
+.expand {
+    cursor: pointer;
+}
+
 .editor-input-header, .editor-output-header {
     top: 0 !important;
 }
-.editor-result-output{
+
+.editor-result-output {
     bottom: 12px;
-    height:125px;
-    left:0;
-    right:0;
+    height: 125px;
+    left: 0;
+    right: 0;
 }
 
 .editor-input, .editor-input-header {
@@ -13,10 +23,16 @@
     left: 0;
     top: 24px;
     bottom: 150px;
-
+    transition: all 250ms ease-in;
 }
-.editor-input.large,.editor-input-header.large{
-    right:0;
+
+.editor-input.expanded {
+
+    right: 0 !important;
+}
+
+.editor-input.large, .editor-input-header.large {
+    right: 0;
 }
 
 .editor-output, .editor-output-header {
@@ -24,6 +40,11 @@
     left: 51%;
     top: 24px;
     bottom: 150px;
+    transition: all 250ms ease-in;
+}
+
+.editor-output.expanded {
+    left: 0 !important;
 }
 
 [class*='editor-'] {
