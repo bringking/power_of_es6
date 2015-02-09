@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                  otherHeader = parentHeader.siblings(".editor-input-header");
             }
 
-
             //add classes to editor
             if (editor.classList.contains("expanded")) {
                editor.classList.remove("expanded");

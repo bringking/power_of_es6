@@ -459,10 +459,58 @@ on ${ new Date().toISOString()}`;
         <!-- Spread operator-->
         <section>
             <h3>Spread operator</h3>
+             <p>
+                Expands expressions where multiple args are expected
+             </p>
+             <p>
+                A better fn.apply()
+             </p>
         </section>
-        <!-- Spread operator-->
-        <section>
-            <h3>Spread operator</h3>
+        </section>
+            <!-- Spread operator examples-->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-input">
+(function() {
+ 
+
+    function fullName (firstName,lastName) {
+        return `${firstName} ${lastName}`;
+    }
+  
+    let names = ["Charles","King","James","King","Maggie","King"];
+
+    //spread array as args
+    var fullName = fullName(...names); 
+    
+    //combine with destruturing
+    let [ cFirst, cLast, ...rest ] = names;
+
+    //or array literal concatenation
+    let who = ["Spongebob","Squarepants"]
+    let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
+
+    //use for push and unshift
+    let start = [1,2,3];
+    let end = [4,5,6];
+    let more = [7,8,9];
+
+    end.unshift(...more);
+    start.push(...end);
+
+
+     
+});
+            </div>
+            <div class="editor-output-header">
+                <h3>ES5 <span class="expand">&#8596;</span></h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Classes-->
         <section>
