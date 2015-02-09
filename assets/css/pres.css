@@ -13,7 +13,7 @@
 
 .editor-result-output {
     bottom: 12px;
-    height: 125px;
+    height: 75px;
     left: 0;
     right: 0;
 }
@@ -21,9 +21,9 @@
 .editor-input, .editor-input-header {
     right: 51%;
     left: 0;
-    top: 24px;
-    bottom: 150px;
-    transition: all 250ms ease-in;
+    top: 29px;
+    bottom: 100px;
+    transition: left,right 250ms ease-in;
 }
 
 .editor-input.expanded {
@@ -38,8 +38,8 @@
 .editor-output, .editor-output-header {
     right: 0%;
     left: 51%;
-    top: 24px;
-    bottom: 150px;
+    top: 29px;
+    bottom: 100px;
     transition: left 250ms ease-in;
 }
 

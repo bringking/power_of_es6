@@ -179,24 +179,26 @@
     //array
      var items = [1,2,3,4];
 
-     //expression bodies or lambda
-                var byTwo = items.map( (i) => i*2);
+    //expression bodies or lambda
+    var byTwo = items.map( (i) => i*2);
 
-                //with a block
-                var byFour = items.map( (i) => {
-                return i * 4;
-                });
+    //with a block
+    var byFour = items.map( (i) => {
+        return i * 4;
+    });
 
-                //lexical this
-                function Dog() {
-                this.name = "Dog";
-                this.nickNames = ["Fluffy", "Scruffy", "Biscuit"]
-                this.print = function () {
-                return this.nickNames.map( (n) => {
+    //lexical this
+    function Dog() {
+
+            this.name = "Dog";
+            this.nickNames = ["Fluffy", "Scruffy", "Biscuit"]
+            this.print = () => {
+            return this.nickNames.map( (n) => {
                 return this.name + " is nicknamed " + n;
-                });
-                };
-                }
+            });
+
+        };
+    }
 
 });
             </div>
@@ -231,9 +233,7 @@
          lastName = "King";
 
      //return our string literal
-     return `${firstName} ${lastName} is talking about ES6
-on ${ new Date().toISOString()}`;
-
+     return `${firstName} ${lastName} is talking about ES6 on ${ new Date().toISOString()}`;
 
 });
             </div>
@@ -445,7 +445,6 @@ on ${ new Date().toISOString()}`;
 
     }
 
-     
 });
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
@@ -500,8 +499,6 @@ on ${ new Date().toISOString()}`;
     end.unshift(...more);
     start.push(...end);
 
-
-     
 });
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
@@ -598,7 +595,7 @@ on ${ new Date().toISOString()}`;
         <!-- Generators examples -->
         <section class="full">
             <div class="editor-input-header large">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6</h3>
             </div>
             <div class="editor-input large native">
 
@@ -644,7 +641,7 @@ on ${ new Date().toISOString()}`;
         <!-- Generators examples -->
         <section class="full">
             <div class="editor-input-header large">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6</h3>
             </div>
             <div class="editor-input large native">
 //advanced example from - http://modernweb.com/2014/02/10/replacing-callbacks-with-es6-generators/
@@ -825,7 +822,7 @@ run(function* myDelayedMessages(resume) {
         </section>
             <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6</h3>
             </div>
             <div class="editor-input large native">
     function someLongTask() {
@@ -838,7 +835,7 @@ run(function* myDelayedMessages(resume) {
 
     } 
    
-    someLongTask().then(function(msg){
+    someLongTask().then(function(msg) {
         console.log(msg);
     });
             </div>
@@ -848,6 +845,172 @@ run(function* myDelayedMessages(resume) {
         <!-- Map, Set, WeakMap, WeakSet -->
         <section>
             <h3>Map, Set, WeakMap, WeakSet</h3>
+        </section>
+        <section>
+            <h3>Map</h3>
+             <p>
+                Just a simple Key-Value pair
+            </p>
+            <p>
+                Except the key can be any value, not just primitives
+            </p>
+            <p>
+                <q>Key equality is based on the "same-value" algorithm: NaN is considered the same as NaN (even though NaN !== NaN) and all other values are considered equal according to the semantics of the === operator. -MDN</q>
+            </p>
+        </section>
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input large native">
+(function() {
+    
+    var m = new Map();
+    m.set("hello", 42);
+
+    //create an obj
+    const Person = {
+        name:"Charlie"
+    }
+    //add the complex key
+    m.set(Person, "present");
+
+    //get the value
+    m.get(Person) === "present";   
+
+    //iterable
+    for ( var v of m.values() ) {
+        console.log(v);
+    }
+    for ( var k of m.keys() ) {
+        console.log(k);
+    }
+
+    //supports size, not length;
+    return m.size;
+
+
+
+});
+            </div>
+            <div class="editor-result-output">
+            </div>
+        </section>
+        <section>
+            <h3>Set</h3>
+            <p>
+                Iterable object of unqiue values
+            </p>
+             <p>
+                Iterable in insertion order
+            </p>
+            <p>
+                No "set", just "add"
+            </p>
+        </section>
+                <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input large native">
+(function() {
+    
+    var s = new Set();
+    s.add("hello");
+
+    //create an obj
+    const Person = {
+        name:"Charlie"
+    }
+    //add the complex key
+    s.add(Person);
+
+    //get the value
+    s.has(Person) === true;
+
+    // try re-add the same value, ignored
+    s.add(Person);
+
+
+    //iterable
+    for ( var item of s ) {
+        console.log(item);
+    }
+
+
+    //supports size;
+    return s.size;
+
+});
+            </div>
+            <div class="editor-result-output">
+            </div>
+        </section>
+                <section>
+            <h3>WeakMap</h3>
+            <p>
+                Like a Map, but not iterable
+            </p>
+             <p>
+                Keys cannot be primitive types. Keys are objects and are "weakly" held
+            </p>
+        </section>
+                <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input large native">
+(function() {
+    
+    var wm = new WeakMap();
+
+    //create an obj
+    const Person = {
+        name: "Charlie"
+    }
+
+    wm.set(Person, "present");
+
+    //get the value
+    return wm.has(Person) === true;
+
+});
+            </div>
+            <div class="editor-result-output">
+            </div>
+        </section>
+        <section>
+            <h3>WeakSet</h3>
+            <p>
+                Like a Set, but not iterable
+            </p>
+             <p>
+                Values cannot be primitive types. Values are objects and are "weakly" held
+            </p>
+        </section>
+                <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6</h3>
+            </div>
+            <div class="editor-input large native">
+(function() {
+    
+    var ws = new WeakSet();
+
+    //create an obj
+    const Person = {
+        name: "Charlie"
+    }
+
+    ws.add(Person);
+
+    //get the value
+    return ws.has(Person) === true;
+
+});
+            </div>
+            <div class="editor-result-output">
+            </div>
         </section>
         <!-- Typed Arrays -->
         <section>
