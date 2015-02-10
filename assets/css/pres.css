@@ -3,9 +3,9 @@
     text-align: center;
 }
 
-.svg-container svg {
+.svg-container svg, img {
     height: 50px;
-    
+
 }
 
 .expanded {
