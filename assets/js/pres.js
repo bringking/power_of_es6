@@ -8,7 +8,12 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         return check;
     };
 
-    var currentInputEditor, currentOutputEditor;
+    if ( mobilecheck() ) {
+        $('.editor-input-header small').hide();
+        $('.editor-output-header small').hide();
+    }
+
+    var currentInputEditor, currentOutputEditor, currentResultsWindow, native;
 
     //attach click handler to expanders
     var expanders = document.querySelectorAll(".expand");
@@ -37,10 +42,24 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             }
 
             //trigger resize
-            currentInputEditor.resize();
-            currentOutputEditor.resize();
+            if ( currentInputEditor ) {
+                currentInputEditor.resize();
+            }
+            if ( currentOutputEditor ) {
+                currentOutputEditor.resize();
+            }
+
         });
     }
+
+    $(".play").on("click", function() {
+        var newVal = getCurrentInputValue();
+        if ( newVal ) {
+            var results = evalFunctionReturnJson(newVal);
+            setResultsWindow(results);
+        }
+
+    });
 
     // Full list of configuration options available at:
     // https://github.com/hakimel/reveal.js#configuration
@@ -89,12 +108,47 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             parsed = to5.transform(input, opts).code;
         }
         catch ( err ) {
-            //console.error(err);
-            //console.log("didn't set output because it errored");
+            console.error(err);
+            console.log("didn't set output because it errored");
         }
 
         return parsed;
 
+    }
+
+    /**
+     * get the input value of the current editor
+     * @returns {*}
+     */
+    function getCurrentInputValue() {
+        if ( currentInputEditor ) {
+            //get the ES5 transformed value
+            return native
+                ? currentInputEditor.getValue()
+                : transformText(currentInputEditor.getValue());
+        }
+
+    }
+
+    /**
+     * Given a string of code, evaluate as JSON and return
+     * @param code
+     * @returns {*}
+     */
+    function evalFunctionReturnJson( code ) {
+        try {
+            //eval the result
+            var output = evalOutput = eval(code)();
+
+            //set the value of the results window
+            return JSON.stringify(output);
+        } catch ( e ) {
+            console.error(e);
+        }
+    }
+
+    function setResultsWindow( text ) {
+        currentResultsWindow.setValue(text, 0);
     }
 
     /**
@@ -106,6 +160,8 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         if ( !slideElement )
             return;
 
+        var isMobile = mobilecheck();
+
         //get the input editor
         var foundInput = slideElement.querySelectorAll(".editor-input")[0];
 
@@ -115,13 +171,14 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         //get the result editor
         var foundResult = slideElement.querySelectorAll(".editor-result-output")[0];
 
-        var input, output, result, native;
+        var input, output, result, inputCode;
 
         //attach the ace editor
         if ( foundInput ) {
+            native = foundInput.className.indexOf("native") > -1;
             //don't use ace on mobile
-            if ( mobilecheck() ) {
-                var inputCode = foundInput.innerHTML;
+            if ( isMobile ) {
+                inputCode = foundInput.innerHTML.toString();
                 if ( inputCode.indexOf('<pre') === -1 ) {
 
                     var inputPre = $('<pre class="full-height"><code class="hljs javascript">' + inputCode + '</code></pre>');
@@ -131,56 +188,44 @@ document.addEventListener("DOMContentLoaded", function( event ) {
 
                 }
 
-                return;
+            } else {
+                input = ace.edit(foundInput);
+                currentInputEditor = input;
+                input.setTheme("ace/theme/monokai");
+                input.getSession().setMode("ace/mode/javascript");
+                input.getSession().setUseWrapMode(false);
+                input.setShowPrintMargin(false);
+                input.setDisplayIndentGuides(false);
+                input.renderer.setShowGutter(false);
+                input.setHighlightActiveLine(false);
             }
-
-            input = ace.edit(foundInput);
-            currentInputEditor = input;
-            input.setTheme("ace/theme/monokai");
-            input.getSession().setMode("ace/mode/javascript");
-            input.getSession().setUseWrapMode(false);
-            input.setShowPrintMargin(false);
-            input.setDisplayIndentGuides(false);
-            input.renderer.setShowGutter(false);
-            input.setHighlightActiveLine(false);
-            native = foundInput.className.indexOf("native") > -1;
         }
         //attach the ace editor
         if ( foundOutput ) {
 
             //don't use ace on mobile
-            if ( mobilecheck() ) {
-                var outputCode = foundOutput.innerHTML;
-                if ( outputCode.indexOf('<pre') === -1 ) {
-                    var outputPre = $('<pre class="full-height"><code class="hljs javascript">' + outputCode + '</code></pre>');
-                    foundOutput.innerHTML = "";
-                    $(foundOutput).append(outputPre);
-                    hljs.highlightBlock(outputPre[0]);
-                }
+            if ( isMobile ) {
 
-                return;
-            }
-
-            output = ace.edit(foundOutput);
-            currentOutputEditor = output;
-            output.setTheme("ace/theme/monokai");
-            output.getSession().setMode("ace/mode/javascript");
-            output.getSession().setUseWrapMode(false);
-            output.setShowPrintMargin(false);
-            output.setDisplayIndentGuides(false);
-            output.renderer.setShowGutter(false);
-            output.setHighlightActiveLine(false);
-            //set the initial value
-            if ( foundInput.classList.contains("amd") ) {
-                output.setValue(transformText(input.getValue(), {modules: "amd"}), 0);
             } else {
-                output.setValue(transformText(input.getValue(), {modules: "common"}), 0);
+                output = ace.edit(foundOutput);
+                currentOutputEditor = output;
+                output.setTheme("ace/theme/monokai");
+                output.getSession().setMode("ace/mode/javascript");
+                output.getSession().setUseWrapMode(false);
+                output.setShowPrintMargin(false);
+                output.setDisplayIndentGuides(false);
+                output.renderer.setShowGutter(false);
+                output.setHighlightActiveLine(false);
+                //set the initial value
+                output.setValue(transformText(input.getValue()), 0);
             }
 
         }
+
         //attach the ace editor
-        if ( foundResult ) {
+        if ( foundResult && !isMobile ) {
             result = ace.edit(foundResult);
+            currentResultsWindow = result;
             result.setTheme("ace/theme/monokai");
             result.getSession().setUseWrapMode(true);
             result.setShowPrintMargin(false);
@@ -195,36 +240,17 @@ document.addEventListener("DOMContentLoaded", function( event ) {
             input.on("change", function() {
 
                 //set the new value
-                var newVal, evalOutput;
-
-                //set the initial value
-                var opts;
-                if ( foundInput.classList.contains("amd") ) {
-                    opts = {modules: "amd"};
-                } else {
-                    opts = {modules: "common"};
-                }
-
-                //get the ES5 transformed value
-                newVal = native
-                    ? input.getValue()
-                    : transformText(input.getValue(), opts);
+                var newVal = getCurrentInputValue();
 
                 if ( newVal ) {
+
                     //if there is an output window, set the value
                     if ( output ) {
                         output.setValue(newVal, 0);
                     }
 
-                    try {
-                        //eval the result
-                        evalOutput = eval(newVal)();
-
-                        //set the value of the results window
-                        result.setValue(JSON.stringify(evalOutput), 0);
-                    } catch ( e ) {
-                        console.error(e);
-                    }
+                    //evaluate and set the result
+                    setResultsWindow(evalFunctionReturnJson(newVal));
 
                 }
             });
@@ -238,8 +264,8 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         setupEditors(event.currentSlide);
     });
 
-    //setup slides for initial load
-
-    setupEditors(document.querySelectorAll(".present")[0]);
+    Reveal.addEventListener('ready', function( event ) {
+        setupEditors(event.currentSlide)
+    });
 
 });

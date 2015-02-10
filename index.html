@@ -54,7 +54,7 @@
             <h3>Who am I?</h3>
 
             <p>
-                <img height="238" data-src="https://avatars2.githubusercontent.com/u/864845?v=3&s=460" alt="Me">
+                <img data-src="https://avatars2.githubusercontent.com/u/864845?v=3&s=460" alt="Me">
             </p>
             <ul>
                 <li> Husband and father of two</li>
@@ -797,39 +797,35 @@
         <section class="full">
 
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654; Run</span></small><small><span class="expand">&#8596; Expand</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
+    //array
+    var items = [1, 2, 3, 4];
 
-                //array
-                var items = [1,2,3,4];
+    //expression bodies or lambda
+    var byTwo = items.map((i) => i * 2);
 
-                //expression bodies or lambda
-                var byTwo = items.map( (i) => i*2);
+    //with a block
+    var byFour = items.map((i) => {
+        return i * 4;
+    });
 
-                //with a block
-                var byFour = items.map( (i) => {
-                return i * 4;
-                });
-
-                //lexical this
-                function Dog() {
-
-                this.name = "Dog";
-                this.nickNames = ["Fluffy", "Scruffy", "Biscuit"]
-                this.print = () => {
-                return this.nickNames.map( (n) => {
+    //lexical this
+    function Dog() {
+        this.name = "Dog";
+        this.nickNames = ["Fluffy", "Scruffy", "Biscuit"]
+        this.print = () => {
+            return this.nickNames.map((n) => {
                 return this.name + " is nicknamed " + n;
-                });
+            });
+        };
+    }
 
-                };
-                }
-
-                });
-            </div>
+});            </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -851,22 +847,22 @@
         <!-- string templates examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
-                //some vars
-                var firstName = "Charlie",
-                lastName = "King";
+    //some vars
+    var firstName = "Charlie",
+        lastName = "King";
 
-                //return our string literal
-                return `${firstName} ${lastName} is talking about ES6 on ${ new Date().toISOString()}`;
+    //return our string literal
+    return `${firstName} ${lastName} is talking about ES6 on ${ new Date().toISOString()}`;
 
-                });
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -888,21 +884,23 @@
         <!-- let examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
-                let x = 31;
-                if (true) {
-                let x = 71; // different variable
-                }
-                return x; // 31
+    let x = 31;
 
-                });
+    if (true) {
+        let x = 71; // different variable
+    }
+
+    return x; // 31
+
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -924,31 +922,31 @@
         <!-- const examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
-                const apiBase = "http://mysite.com/api/v1";
-                const clientId = "Adxk38dn3c9u1ndk";
+    const apiBase = "http://mysite.com/api/v1";
+    const clientId = "Adxk38dn3c9u1ndk";
 
 
-                function createBaseUrl (url, id) {
-                return `${url}?clientId=${id}`
-                }
+    function createBaseUrl (url, id) {
+        return `${url}?clientId=${id}`
+    }
 
-                //block scoped
-                if (true) {
-                const apiBase = "http://mysite.com/api/v2";
-                }
+    //block scoped
+    if (true) {
+        const apiBase = "http://mysite.com/api/v2";
+    }
 
-                //create url
-                return createBaseUrl(apiBase,clientId);
+    //create url
+    return createBaseUrl(apiBase,clientId);
 
-                });
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -968,43 +966,47 @@
         <!-- Destructuring assignments examples-->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
-                //works on arrays, or objects
-                function getName(args) {
+    //works on arrays, or objects
+    function getName(args) {
 
-                if ( Array.isArray(args) ) {
+            if ( Array.isArray(args) ) {
+
                 //assign the first and second element of the array
-                var [firstName,lastName] = args;
-                } else {
-                //assign the firstName key and lastName key
-                var {firstName,lastName} = args;
-                }
-
+                let [firstName,lastName] = args;
                 return `${firstName} ${lastName}`;
-                }
 
-                //you can skip elements
-                let items = [ 1,2,3,4,5 ];
-                let [,second, third, fourth] = items;
+            } else {
 
-                //useful for selecting keys inside an expression
-                var books = [
-                { name:"Javascript: The Good Parts", ISBN:1224283},
-                { name: "Effective Javascript", ISBN:128263},
-                { name: "The Principles of Object-Oriented JavaScript", ISBN:122663}
-                ];
+                //assign the firstName key and lastName key
+                let {firstName,lastName} = args;
+                return `${firstName} ${lastName}`;   
+            }
+        
+    }
 
-                //grab just the names
-                var bookNames = books.map( ({name}) => name);
+    //you can skip elements
+    let items = [ 1,2,3,4,5 ];
+    let [,second, third, fourth] = items;
 
-                });
+    //useful for selecting keys inside an expression
+    let books = [
+        { name:"Javascript: The Good Parts", ISBN:1224283},
+        { name: "Effective Javascript", ISBN:128263},
+        { name: "The Principles of Object-Oriented JavaScript", ISBN:122663}
+    ];
+
+    //grab just the names
+    let bookNames = books.map( ({name}) => name);
+
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -1020,22 +1022,22 @@
         <!-- Destructuring assignments examples-->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
-                //define so vars
-                let name = "Charlie",
-                age = 29;
+    //define so vars
+    let name = "Charlie",
+        age = 29;
 
-                //add the keys+value as shorthand syntax
-                return {name, age, height:180};
+    //add the keys+value as shorthand syntax
+    return {name, age, height:180};
 
-                });
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -1057,35 +1059,35 @@
         <!-- Default args examples-->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
+    function getApiUrl (resource, base = "http://b.com/api") {
+        return `${base}/${resource}`;
+    }
+   
 
-                function getApiUrl (resource, base = "http://b.com/api") {
-                return `${base}/${resource}`;
-                }
+    let staticBase = "http://b.com/content";
 
+    //you can utilize outer scope
+    function getStaticUrl (resource, base = staticBase) {
+        return `${base}/${resource}`;
+    }
+ 
 
-                let staticBase = "http://b.com/content";
+    //or arbitrary expressions
+    function getThumb(resource, width, height, dpi = width*height/10 ) {
 
-                //you can utilize outer scope
-                function getStaticUrl (resource, base = staticBase) {
-                return `${base}/${resource}`;
-                }
+        return `${staticBase}/${resource}?width=${width}&height=${height}&dpi=${dpi}`;
 
-                //or arbitrary expressions
-                function getThumb(resource, width, height, dpi = width*height/10 ) {
+    }
 
-                return `${staticBase}/${resource}?width=${width}&height=${height}&dpi=${dpi}`;
-
-                }
-
-                });
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -1108,40 +1110,40 @@
         <!-- Spread operator examples-->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
 
-                function fullName (firstName,lastName) {
-                return `${firstName} ${lastName}`;
-                }
+    function fullName (firstName,lastName) {
+        return `${firstName} ${lastName}`;
+    }
 
-                let names = ["Charles","King","James","King","Maggie","King"];
+    let names = ["Charles","King","James","King","Maggie","King"];
 
-                //spread array as args
-                var fullName = fullName(...names);
+    //spread array as args
+    var fullName = fullName(...names);
 
-                //combine with destruturing
-                let [ cFirst, cLast, ...rest ] = names;
+    //combine with destruturing
+    let [ cFirst, cLast, ...rest ] = names;
 
-                //or array literal concatenation
-                let who = ["Spongebob","Squarepants"]
-                let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
+    //or array literal concatenation
+    let who = ["Spongebob","Squarepants"]
+    let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
 
-                //use for push and unshift
-                let start = [1,2,3];
-                let end = [4,5,6];
-                let more = [7,8,9];
+    //use for push and unshift
+    let start = [1,2,3];
+    let end = [4,5,6];
+    let more = [7,8,9];
 
-                end.unshift(...more);
-                start.push(...end);
+    end.unshift(...start);
+    end.push(...more);
 
-                });
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -1163,56 +1165,62 @@
         <!-- classes examples-->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-                (function() {
+(function() {
 
-                //create a logger facade
-                class Logger {
-                constructor( level = "Info" ) {
-                this.level = level;
-                }
-                log ( message ) {
-                let msg = `%c ${new Date().toISOString()}: ${message}`;
-                switch ( this.level ) {
+    //create a logger facade
+    class Logger {
+        constructor (level = "Info") {
+            this.level = level;
+        }
+        log (message) {
+            let msg = `%c ${new Date().toISOString()}: ${message}`;
+            switch (this.level) {
                 case "Info":
-                console.log(msg, 'background:#659cef;color:#fff;font-size:14px;');
-                break;
+                    console.log(msg,
+                        'background:#659cef;color:#fff;font-size:14px;'
+                    );
+                    break;
                 case "Error":
-                console.log(msg,'background: red; color: #fff;font-size:14px;');
-                break;
+                    console.log(msg,
+                        'background: red; color: #fff;font-size:14px;'
+                    );
+                    break;
                 case "Debug":
-                console.log(msg,'background: #e67e22; color:#fff; font-size:14px;');
-                break;
+                    console.log(msg,
+                        'background: #e67e22; color:#fff; font-size:14px;'
+                    );
+                    break;
                 case "Dir":
-                console.dir(msg);
-                break;
+                    console.dir(msg);
+                    break;
                 default:
-                console.log(msg);
-                }
-                }
-                }
+                    console.log(msg);
+            }
+        }
+    }
 
-                //create an instance of our logger
-                var appLogger = new Logger("Debug");
-                appLogger.log("Hello");
+    //create an instance of our logger
+    const appLogger = new Logger("Debug");
+    appLogger.log("Hello");
 
-                //extend it
-                class BetterLogger extends Logger {
-                log(message,level) {
-                this.level = level;
-                super.log(message);
-                }
-                }
-                //create instance of our better logger
-                var appBetterLogger = new BetterLogger("Debug");
-                appBetterLogger.log("BetterLogger","Info");
+    //extend it
+    class BetterLogger extends Logger {
+        log(message, level) {
+            this.level = level;
+            super.log(message);
+        }
+    }
 
-                });
+    //create instance of our better logger
+    const appBetterLogger = new BetterLogger("Debug");
+    appBetterLogger.log("BetterLogger", "Info");
+});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
+                <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
@@ -1239,45 +1247,37 @@
         <!-- Generators examples -->
         <section class="full">
             <div class="editor-input-header large">
-                <h3>ES6</h3>
+                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
+(function() {
 
-                (function() {
+    //generator
+    function* idMaker(idx) {
+            var index = idx || 0;
 
-                //generator
-                function* idMaker (idx) {
+            //infinite loop!
+            while (true) {
 
-                var index = idx || 0;
-
-                //infinite loop!
-                while ( true ) {
                 //get the value of next, and yield next index
                 var reset = yield index++;
+
                 //did they ask for a reset?
                 if (reset) {
-                index = idx || 0;
+                    index = idx || 0;
                 }
 
-                }
+            }
+    }
 
-                }
+    //create new generator iterator, notice no 'new'
+    var gen = idMaker();
 
-                //create new generator iterator, notice no 'new'
-                var gen = idMaker();
+    //grab some IDs
+    //each next returns > { value: val, done: false }
+    var ids = [gen.next(), gen.next(), gen.next()];
 
-                //grab some IDs
-                //each next returns > { value: val, done: false }
-                var ids = [gen.next(),gen.next(),gen.next()];
-
-                //print result
-                //return ids;
-
-                //reset Ids back to zero
-                //return gen.next(true);
-
-                });
-
+});
             </div>
             <div class="editor-result-output">
             </div>
@@ -1285,30 +1285,28 @@
         <!-- Generators examples -->
         <section class="full">
             <div class="editor-input-header large">
-                <h3>ES6</h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-                //advanced example from - http://modernweb.com/2014/02/10/replacing-callbacks-with-es6-generators/
+//advanced example from - http://modernweb.com/2014/02/10/replacing-callbacks-with-es6-generators/
+function delay(time, callback) {
+    setTimeout(function() {
+        callback("Slept for " + time);
+    }, time);
+}
 
-                function delay(time, callback) {
-                setTimeout(function () {
-                callback("Slept for "+time);
-                }, time);
-                }
+function run(generatorFunction) {
+    var generatorItr = generatorFunction(resume);
 
-                function run(generatorFunction) {
-                var generatorItr = generatorFunction(resume);
-                function resume(callbackValue) {
-                generatorItr.next(callbackValue);
-                }
-                generatorItr.next()
-                }
-
-                run(function* myDelayedMessages(resume) {
-                console.log(yield delay(1000, resume));
-                console.log(yield delay(1200, resume));
-                })
-
+    function resume(callbackValue) {
+        generatorItr.next(callbackValue);
+    }
+    generatorItr.next()
+}
+run(function* myDelayedMessages(resume) {
+    console.log(yield delay(1000, resume));
+    console.log(yield delay(1200, resume));
+});
             </div>
             <div class="editor-result-output">
             </div>
@@ -1338,121 +1336,104 @@
             </p>
             <pre>
                 <code class="hljs javascript">
-                    (function (root, factory) {
-                    if (typeof define === 'function' && define.amd) {
+(function(root, factory) {
+    if (typeof define === 'function' && define.amd) {
 
-                    define(['b'], function (b) {
-                    return (root.returnExportsGlobal = factory(b));
-                    });
+        define(['b'], function(b) {
+            return (root.returnExportsGlobal = factory(b));
+        });
 
-                    } else if (typeof exports === 'object') {
+    } else if (typeof exports === 'object') {
 
-                    module.exports = factory(require('b'));
-                    } else {
+        module.exports = factory(require('b'));
 
-                    root.returnExportsGlobal = factory(root.b);
-                    }
-                    }(this, function (b) {
+    } else {
 
-                    //finally do actual work
-                    return {};
+        root.returnExportsGlobal = factory(root.b);
 
-                    }));
+    }
+}(this, function(b) {
+
+    //finally do actual work
+    return {};
+
+}));
                 </code>
             </pre>
         </section>
         <!-- Modules examples -->
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6</h3>
             </div>
             <div class="editor-input expanded">
-                //Exporting
+//Exporting
 
-                //export vars
-                export var falsy = 0;
+//export vars
+export var falsy = 0;
 
-                //export let
-                export let truthy = 1;
+//export let
+export let truthy = 1;
 
-                //export contstants
-                export const read_only = "String";
+//export contstants
+export const read_only = "String";
 
-                //export functions
-                export function noop() {
+//export functions
+export function noop() {
 
-                }
+}
 
-                //or generators
-                export function* noopGen() {
+//or generators
+export function* noopGen() {
 
-                }
+}
 
-                //or classes
-                export class Test {
+//or classes
+export class Test {
 
-                }
+}
 
-            </div>
-            <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
-            </div>
-            <div class="editor-output">
-            </div>
-            <div class="editor-result-output">
             </div>
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6</h3>
             </div>
-            <div class="editor-input expanded">
-                //Importing
+            <div class="editor-input large">
 
-                // Default exports and named exports
-                import taskjs, { spawn, enqueue } from 'task';
-                import taskjs from 'task';
-                import { spawn, enqueue } from 'task';
+    //Importing
 
-                //import spawn as s
-                import { spawn as s, enqueue } from 'task';
+    // Default exports and named exports
+    import taskjs, { spawn, enqueue } from 'task';
+    import taskjs from 'task';
+    import { spawn, enqueue } from 'task';
 
-                //entire module as an object
-                import * as task from 'task';
+    //import spawn as s
+    import { spawn as s, enqueue } from 'task';
 
-                //load the module, don’t import anything
-                import 'task';
+    //entire module as an object
+    import * as task from 'task';
 
-            </div>
-            <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
-            </div>
-            <div class="editor-output">
-            </div>
-            <div class="editor-result-output">
+    //load the module, don’t import anything
+    import 'task';
+
+            
             </div>
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6 <span class="expand">&#8596;</span></h3>
+                <h3>ES6</h3>
             </div>
-            <div class="editor-input expanded">
-                //import config
+            <div class="editor-input large">
+//import config
 
-                System.import('task')
-                .then(task => {
-                //do stuff with task
-                })
-                .catch(error => {
+ System.import('task')
+ .then(task => {
+    //do stuff with task
+ })
+ .catch(error => {
 
-                });
-            </div>
-            <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5 <span class="expand">&#8596;</span></h3>
-            </div>
-            <div class="editor-output">
-            </div>
-            <div class="editor-result-output">
+ });
             </div>
         </section>
         <!-- Promises -->
@@ -1466,29 +1447,54 @@
             <p>
                 Lets asynchronous methods return values like synchronous methods
             </p>
-
-            <p>
-                Compact like CommonJS, async like AMD
-            </p>
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-                function someLongTask() {
+(function(){
 
-                return new Promise( function(resolve,reject){
-                setTimeout(function(){
+    //simulate some async task
+    function someLongTask() {
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
                 resolve("someLongTask");
-                },1000);
-                });
+            }, 1000);
+        });
+    }
+    //simulate some other async task
+    function someOtherLongTask(msg) {
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve("someOtherLongTask says: " +msg);
+            },1500);
+        });
+    }
 
-                }
+    //run a task
+    someLongTask()
+    .then(function (msg) {
+        console.log("Single: "+ msg);
+    });
 
-                someLongTask().then(function(msg) {
-                console.log(msg);
-                });
+    //run chained tasks
+    someLongTask()
+    .then(someOtherLongTask)
+    .then(function (msg) {
+        console.log("Chained: "+msg);
+    });
+
+    //or wait for all of them
+    var promises = [someLongTask(), someOtherLongTask("Hello")];
+
+    Promise.all(promises).then(function(results) {
+        var msg1 = results[0];
+        var msg2 = results[1];
+        console.log("All: " + msg1+ " then "+ msg2);
+    });    
+
+});                
             </div>
             <div class="editor-result-output">
             </div>
@@ -1516,37 +1522,35 @@
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-                (function() {
+(function() {
+    var m = new Map();
+    m.set("hello", 42);
 
-                var m = new Map();
-                m.set("hello", 42);
+    //create an obj
+    const Person = {
+            name: "Charlie"
+        }
+    //add the complex key
+    m.set(Person, "present");
 
-                //create an obj
-                const Person = {
-                name:"Charlie"
-                }
-                //add the complex key
-                m.set(Person, "present");
+    //get the value
+    m.get(Person) === "present";
 
-                //get the value
-                m.get(Person) === "present";
+    //iterable
+    for (var v of m.values()) {
+        console.log(v);
+    }
 
-                //iterable
-                for ( var v of m.values() ) {
-                console.log(v);
-                }
-                for ( var k of m.keys() ) {
-                console.log(k);
-                }
+    for (var k of m.keys()) {
+        console.log(k);
+    }
 
-                //supports size, not length;
-                return m.size;
-
-
-                });
+    //supports size, not length;
+    return m.size;
+});
             </div>
             <div class="editor-result-output">
             </div>
@@ -1568,38 +1572,35 @@
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-                (function() {
+(function() {
+    var s = new Set();
+    s.add("hello");
 
-                var s = new Set();
-                s.add("hello");
+    //create an obj
+    const Person = {
+        name: "Charlie"
+    }
 
-                //create an obj
-                const Person = {
-                name:"Charlie"
-                }
-                //add the complex key
-                s.add(Person);
+    //add the complex key
+    s.add(Person);
 
-                //get the value
-                s.has(Person) === true;
+    //get the value
+    s.has(Person) === true;
 
-                // try re-add the same value, ignored
-                s.add(Person);
+    // try re-add the same value, ignored
+    s.add(Person);
 
+    //iterable
+    for (var item of s) {
+        console.log(item);
+    }
 
-                //iterable
-                for ( var item of s ) {
-                console.log(item);
-                }
-
-
-                //supports size;
-                return s.size;
-
-                });
+    //supports size;
+    return s.size;
+});
             </div>
             <div class="editor-result-output">
             </div>
@@ -1617,24 +1618,24 @@
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-                (function() {
+(function() {
 
-                var wm = new WeakMap();
+    var wm = new WeakMap();
 
-                //create an obj
-                const Person = {
-                name: "Charlie"
-                }
+    //create an obj
+    const Person = {
+        name: "Charlie"
+    }
 
-                wm.set(Person, "present");
+    wm.set(Person, "present");
 
-                //get the value
-                return wm.has(Person) === true;
+    //get the value
+    return wm.has(Person) === true;
 
-                });
+});
             </div>
             <div class="editor-result-output">
             </div>
@@ -1652,24 +1653,23 @@
         </section>
         <section class="full">
             <div class="editor-input-header">
-                <h3>ES6</h3>
+                <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-                (function() {
+(function() {
 
-                var ws = new WeakSet();
+    var ws = new WeakSet();
+    //create an obj
+    const Person = {
+        name: "Charlie"
+    }
 
-                //create an obj
-                const Person = {
-                name: "Charlie"
-                }
+    ws.add(Person);
 
-                ws.add(Person);
+    //get the value
+    return ws.has(Person) === true;
 
-                //get the value
-                return ws.has(Person) === true;
-
-                });
+});
             </div>
             <div class="editor-result-output">
             </div>
