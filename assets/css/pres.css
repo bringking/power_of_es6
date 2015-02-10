@@ -71,3 +71,12 @@
     height: 100% !important;
     width: 100% !important;
 }
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape) {
+    .ace_line{
+        height:22.108571px  !important;
+    }
+}
