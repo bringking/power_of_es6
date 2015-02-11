@@ -800,37 +800,34 @@
                 <h3>ES6 <small><span class="play">&#9654; Run</span></small><small><span class="expand">&#8596; Expand</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
-    //array
-    var items = [1, 2, 3, 4];
+//array
+var items = [1, 2, 3, 4];
 
-    //expression bodies or lambda
-    var byTwo = items.map((i) => i * 2);
+//expression bodies or lambda
+var byTwo = items.map((i) => i * 2);
 
-    //with a block
-    var byFour = items.map((i) => {
-        return i * 4;
-    });
+//with a block
+var byFour = items.map((i) => {
+    return i * 4;
+});
 
-    //lexical this
-    function Dog() {
-        this.name = "Dog";
-        this.nickNames = ["Fluffy", "Scruffy", "Biscuit"]
-        this.print = () => {
-            return this.nickNames.map((n) => {
-                return this.name + " is nicknamed " + n;
-            });
-        };
-    }
-
-});            </div>
+//lexical this
+function Dog() {
+    this.name = "Dog";
+    this.nickNames = ["Fluffy", "Scruffy", "Biscuit"];
+    this.print = () => {
+        return this.nickNames.map((n) => {
+            return this.name + " is nicknamed " + n;
+        });
+    };
+}
+           </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- string templates -->
         <section>
@@ -850,24 +847,19 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+//some vars
+var firstName = "Charlie",
+    lastName = "King";
 
-    //some vars
-    var firstName = "Charlie",
-        lastName = "King";
-
-    //return our string literal
-    return `${firstName} ${lastName} is talking about ES6 on ${ new Date().toISOString()}`;
-
-});
+//return our string literal
+console.log(`${firstName} ${lastName} is talking about ES6 on ${ new Date().toISOString()}`);
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+         <div class="editor-result-output"></div>
         </section>
         <!-- Let scope -->
         <section>
@@ -887,25 +879,20 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+let x = 31;
 
-    let x = 31;
+if (true) {
+    let x = 71; // different variable
+}
 
-    if (true) {
-        let x = 71; // different variable
-    }
-
-    return x; // 31
-
-});
+console.log(x); // 31
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- const-->
         <section>
@@ -925,33 +912,27 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+const apiBase = "http://mysite.com/api/v1";
+const clientId = "Adxk38dn3c9u1ndk";
 
-    const apiBase = "http://mysite.com/api/v1";
-    const clientId = "Adxk38dn3c9u1ndk";
+function createBaseUrl (url, id) {
+    return `${url}?clientId=${id}`
+}
 
+//block scoped
+if (true) {
+    const apiBase = "http://mysite.com/api/v2";
+}
 
-    function createBaseUrl (url, id) {
-        return `${url}?clientId=${id}`
-    }
-
-    //block scoped
-    if (true) {
-        const apiBase = "http://mysite.com/api/v2";
-    }
-
-    //create url
-    return createBaseUrl(apiBase,clientId);
-
-});
+//create url
+return createBaseUrl(apiBase,clientId);
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Destructuring assignments-->
         <section>
@@ -969,49 +950,44 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+//works on arrays, or objects
+function getName(args) {
 
-    //works on arrays, or objects
-    function getName(args) {
+    if ( Array.isArray(args) ) {
 
-            if ( Array.isArray(args) ) {
+        //assign the first and second element of the array
+        let [firstName,lastName] = args;
+        return `${firstName} ${lastName}`;
 
-                //assign the first and second element of the array
-                let [firstName,lastName] = args;
-                return `${firstName} ${lastName}`;
+    } else {
 
-            } else {
-
-                //assign the firstName key and lastName key
-                let {firstName,lastName} = args;
-                return `${firstName} ${lastName}`;   
-            }
-        
+        //assign the firstName key and lastName key
+       let {firstName,lastName} = args;
+        return `${firstName} ${lastName}`;   
     }
+        
+}
 
-    //you can skip elements
-    let items = [ 1,2,3,4,5 ];
-    let [,second, third, fourth] = items;
+//you can skip elements
+let items = [ 1,2,3,4,5 ];
+let [,second, third, fourth] = items;
 
-    //useful for selecting keys inside an expression
-    let books = [
-        { name:"Javascript: The Good Parts", ISBN:1224283},
-        { name: "Effective Javascript", ISBN:128263},
-        { name: "The Principles of Object-Oriented JavaScript", ISBN:122663}
-    ];
+//useful for selecting keys inside an expression
+let books = [
+    { name:"Javascript: The Good Parts", ISBN:1224283},
+    { name: "Effective Javascript", ISBN:128263},
+    { name: "The Principles of Object-Oriented JavaScript", ISBN:122663}
+];
 
-    //grab just the names
-    let bookNames = books.map( ({name}) => name);
-
-});
+//grab just the names
+let bookNames = books.map( ({name}) => name);
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Object literals-->
         <section>
@@ -1025,24 +1001,19 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+//define so vars
+let name = "Charlie",
+    age = 29;
 
-    //define so vars
-    let name = "Charlie",
-        age = 29;
-
-    //add the keys+value as shorthand syntax
-    return {name, age, height:180};
-
-});
+//add the keys+value as shorthand syntax
+console.log({name, age, height:180});
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Default args-->
         <section>
@@ -1062,37 +1033,31 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+function getApiUrl (resource, base = "http://b.com/api") {
+    return `${base}/${resource}`;
+}
 
-    function getApiUrl (resource, base = "http://b.com/api") {
-        return `${base}/${resource}`;
-    }
-   
+let staticBase = "http://b.com/content";
 
-    let staticBase = "http://b.com/content";
-
-    //you can utilize outer scope
-    function getStaticUrl (resource, base = staticBase) {
-        return `${base}/${resource}`;
-    }
+//you can utilize outer scope
+function getStaticUrl (resource, base = staticBase) {
+    return `${base}/${resource}`;
+}
  
 
-    //or arbitrary expressions
-    function getThumb(resource, width, height, dpi = width*height/10 ) {
+//or arbitrary expressions
+function getThumb(resource, width, height, dpi = width*height/10 ) {
 
-        return `${staticBase}/${resource}?width=${width}&height=${height}&dpi=${dpi}`;
+    return `${staticBase}/${resource}?width=${width}&height=${height}&dpi=${dpi}`;
 
-    }
-
-});
+}
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Spread operator-->
         <section>
@@ -1113,42 +1078,36 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
+function fullName (firstName,lastName) {
+    return `${firstName} ${lastName}`;
+}
 
+let names = ["Charles","King","James","King","Maggie","King"];
 
-    function fullName (firstName,lastName) {
-        return `${firstName} ${lastName}`;
-    }
+//spread array as args
+var fullName = fullName(...names);
 
-    let names = ["Charles","King","James","King","Maggie","King"];
+//combine with destruturing
+let [ cFirst, cLast, ...rest ] = names;
 
-    //spread array as args
-    var fullName = fullName(...names);
+//or array literal concatenation
+let who = ["Spongebob","Squarepants"]
+let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
 
-    //combine with destruturing
-    let [ cFirst, cLast, ...rest ] = names;
+//use for push and unshift
+let start = [1,2,3];
+let end = [4,5,6];
+let more = [7,8,9];
 
-    //or array literal concatenation
-    let who = ["Spongebob","Squarepants"]
-    let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
-
-    //use for push and unshift
-    let start = [1,2,3];
-    let end = [4,5,6];
-    let more = [7,8,9];
-
-    end.unshift(...start);
-    end.push(...more);
-
-});
+end.unshift(...start);
+end.push(...more);
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Classes-->
         <section>
@@ -1168,64 +1127,61 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small><small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-input expanded">
-(function() {
-
-    //create a logger facade
-    class Logger {
-        constructor (level = "Info") {
-            this.level = level;
-        }
-        log (message) {
-            let msg = `%c ${new Date().toISOString()}: ${message}`;
-            switch (this.level) {
-                case "Info":
-                    console.log(msg,
-                        'background:#659cef;color:#fff;font-size:14px;'
-                    );
-                    break;
-                case "Error":
-                    console.log(msg,
-                        'background: red; color: #fff;font-size:14px;'
-                    );
-                    break;
-                case "Debug":
-                    console.log(msg,
-                        'background: #e67e22; color:#fff; font-size:14px;'
-                    );
-                    break;
-                case "Dir":
-                    console.dir(msg);
-                    break;
-                default:
-                    console.log(msg);
-            }
+//create a logger facade
+class Logger {
+    constructor (level = "Info") {
+        this.level = level;
+    }
+    log (message) {
+        let msg = `%c ${new Date().toISOString()}: ${message}`;
+        switch (this.level) {
+            case "Info":
+                console.log(msg,
+                    'background:#659cef;color:#fff;font-size:14px;'
+                );
+                break;
+            case "Error":
+                console.log(msg,
+                    'background: red; color: #fff;font-size:14px;'
+                );
+                break;
+            case "Debug":
+                console.log(msg,
+                    'background: #e67e22; color:#fff; font-size:14px;'
+                );
+                break;
+            case "Dir":
+                console.dir(msg);
+                break;
+            default:
+                console.log(msg);
         }
     }
+}
 
-    //create an instance of our logger
-    const appLogger = new Logger("Debug");
-    appLogger.log("Hello");
+//create an instance of our logger
+const appLogger = new Logger("Debug");
+appLogger.log("Hello");
 
-    //extend it
-    class BetterLogger extends Logger {
-        log(message, level) {
-            this.level = level;
-            super.log(message);
-        }
+//extend it
+class BetterLogger extends Logger {
+    log(message, level) {
+        this.level = level;
+        super.log(message);
     }
+}
 
-    //create instance of our better logger
-    const appBetterLogger = new BetterLogger("Debug");
-    appBetterLogger.log("BetterLogger", "Info");
-});
+//create instance of our better logger
+const appBetterLogger = new BetterLogger("Debug");
+appBetterLogger.log("BetterLogger", "Info");
+
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5 <small><span class="expand">&#8596;</span></small></h3>
             </div>
             <div class="editor-output">
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Generators-->
         <section>
@@ -1250,37 +1206,34 @@
                  <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-(function() {
+//generator
+function* idMaker(idx) {
+    var index = idx || 0;
 
-    //generator
-    function* idMaker(idx) {
-            var index = idx || 0;
+    //infinite loop!
+    while (true) {
 
-            //infinite loop!
-            while (true) {
+        //get the value of next, and yield next index
+        var reset = yield index++;
 
-                //get the value of next, and yield next index
-                var reset = yield index++;
+        //did they ask for a reset?
+        if (reset) {
+            index = idx || 0;
+        }
 
-                //did they ask for a reset?
-                if (reset) {
-                    index = idx || 0;
-                }
-
-            }
     }
+}
 
-    //create new generator iterator, notice no 'new'
-    var gen = idMaker();
+//create new generator iterator, notice no 'new'
+var gen = idMaker();
 
-    //grab some IDs
-    //each next returns > { value: val, done: false }
-    var ids = [gen.next(), gen.next(), gen.next()];
+//grab some IDs
+//each next returns > { value: val, done: false }
+var ids = [gen.next(), gen.next(), gen.next()];
 
-});
+
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Generators examples -->
         <section class="full">
@@ -1288,6 +1241,7 @@
                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
+
 //advanced example from - http://modernweb.com/2014/02/10/replacing-callbacks-with-es6-generators/
 function delay(time, callback) {
     setTimeout(function() {
@@ -1307,9 +1261,9 @@ run(function* myDelayedMessages(resume) {
     console.log(yield delay(1000, resume));
     console.log(yield delay(1200, resume));
 });
+
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Modules-->
         <section>
@@ -1400,24 +1354,21 @@ export class Test {
                 <h3>ES6</h3>
             </div>
             <div class="editor-input large">
+//Importing
 
-    //Importing
+// Default exports and named exports
+import taskjs, { spawn, enqueue } from 'task';
+import taskjs from 'task';
+import { spawn, enqueue } from 'task';
 
-    // Default exports and named exports
-    import taskjs, { spawn, enqueue } from 'task';
-    import taskjs from 'task';
-    import { spawn, enqueue } from 'task';
+//import spawn as s
+import { spawn as s, enqueue } from 'task';
 
-    //import spawn as s
-    import { spawn as s, enqueue } from 'task';
+//entire module as an object
+import * as task from 'task';
 
-    //entire module as an object
-    import * as task from 'task';
-
-    //load the module, don’t import anything
-    import 'task';
-
-            
+//load the module, don’t import anything
+import 'task';            
             </div>
         </section>
         <section class="full">
@@ -1453,51 +1404,48 @@ export class Test {
                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-(function(){
-
-    //simulate some async task
-    function someLongTask() {
-        return new Promise(function(resolve, reject) {
-            setTimeout(function() {
-                resolve("someLongTask");
-            }, 1000);
-        });
-    }
+//simulate some async task
+function someLongTask() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve("someLongTask");
+        }, 1000);
+    });
+}
     //simulate some other async task
-    function someOtherLongTask(msg) {
-        return new Promise(function(resolve,reject){
-            setTimeout(function(){
-                resolve("someOtherLongTask says: " +msg);
-            },1500);
-        });
-    }
+function someOtherLongTask(msg) {
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            resolve("someOtherLongTask says: " +msg);
+        },1500);
+    });
+}
 
     //run a task
-    someLongTask()
-    .then(function (msg) {
+someLongTask()
+.then(function (msg) {
         console.log("Single: "+ msg);
-    });
+});
 
-    //run chained tasks
-    someLongTask()
-    .then(someOtherLongTask)
-    .then(function (msg) {
-        console.log("Chained: "+msg);
-    });
+//run chained tasks
+someLongTask()
+.then(someOtherLongTask)
+.then(function (msg) {
+    console.log("Chained: "+msg);
+});
 
-    //or wait for all of them
-    var promises = [someLongTask(), someOtherLongTask("Hello")];
+//or wait for all of them
+var promises = [someLongTask(), someOtherLongTask("Hello")];
 
-    Promise.all(promises).then(function(results) {
-        var msg1 = results[0];
-        var msg2 = results[1];
-        console.log("All: " + msg1+ " then "+ msg2);
-    });    
+Promise.all(promises).then(function(results) {
+    var msg1 = results[0];
+    var msg2 = results[1];
+    console.log("All: " + msg1+ " then "+ msg2);
+});    
 
-});                
+               
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Map, Set, WeakMap, WeakSet -->
         <section>
@@ -1525,35 +1473,32 @@ export class Test {
                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-(function() {
-    var m = new Map();
-    m.set("hello", 42);
+let m = new Map();
+m.set("hello", 42);
 
-    //create an obj
-    const Person = {
-            name: "Charlie"
-        }
-    //add the complex key
-    m.set(Person, "present");
+//create an obj
+const Person = {
+    name: "Charlie"
+}
+//add the complex key
+m.set(Person, "present");
 
-    //get the value
-    m.get(Person) === "present";
+//get the value
+m.get(Person) === "present";
 
-    //iterable
-    for (var v of m.values()) {
-        console.log(v);
-    }
+//iterable
+for (var v of m.values()) {
+    console.log(v);
+}
 
-    for (var k of m.keys()) {
-        console.log(k);
-    }
+for (var k of m.keys()) {
+    console.log(k);
+}
 
-    //supports size, not length;
-    return m.size;
-});
+//supports size, not length;
+console.log(m.size);
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <section>
             <h3>Set</h3>
@@ -1575,35 +1520,34 @@ export class Test {
                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-(function() {
-    var s = new Set();
-    s.add("hello");
 
-    //create an obj
-    const Person = {
-        name: "Charlie"
-    }
+let s = new Set();
+s.add("hello");
 
-    //add the complex key
-    s.add(Person);
+//create an obj
+const Person = {
+    name: "Charlie"
+}
 
-    //get the value
-    s.has(Person) === true;
+//add the complex key
+s.add(Person);
 
-    // try re-add the same value, ignored
-    s.add(Person);
+//get the value
+s.has(Person) === true;
 
-    //iterable
-    for (var item of s) {
-        console.log(item);
-    }
+// try re-add the same value, ignored
+s.add(Person);
 
-    //supports size;
-    return s.size;
-});
+//iterable
+for (var item of s) {
+    console.log(item);
+}
+
+//supports size;
+console.log(s.size);
+
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <section>
             <h3>WeakMap</h3>
@@ -1621,24 +1565,19 @@ export class Test {
                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-(function() {
+let wm = new WeakMap();
 
-    var wm = new WeakMap();
+//create an obj
+const Person = {
+    name: "Charlie"
+}
 
-    //create an obj
-    const Person = {
-        name: "Charlie"
-    }
+wm.set(Person, "present");
 
-    wm.set(Person, "present");
-
-    //get the value
-    return wm.has(Person) === true;
-
-});
+//get the value
+console.log(wm.has(Person) === true);
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <section>
             <h3>WeakSet</h3>
@@ -1656,23 +1595,18 @@ export class Test {
                 <h3>ES6 <small><span class="play">&#9654;</span></small></h3>
             </div>
             <div class="editor-input large native">
-(function() {
+let ws = new WeakSet();
+//create an obj
+const Person = {
+    name: "Charlie"
+}
 
-    var ws = new WeakSet();
-    //create an obj
-    const Person = {
-        name: "Charlie"
-    }
+ws.add(Person);
 
-    ws.add(Person);
-
-    //get the value
-    return ws.has(Person) === true;
-
-});
+//get the value
+console.log(ws.has(Person) === true);
             </div>
-            <div class="editor-result-output">
-            </div>
+            <div class="editor-result-output"></div>
         </section>
         <!-- Typed Arrays -->
         <section>

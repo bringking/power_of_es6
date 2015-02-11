@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function( event ) {
 
+
+    //This is terrible idea usually, but for our purposes, setup our own logging
+    window.console.log = function( val ) {
+        setResultsWindow(JSON.stringify(val));
+    };
+
     var mobilecheck = function() {
         var check = false;
         (function( a, b ) {
@@ -109,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         }
         catch ( err ) {
             console.error(err);
-            console.log("didn't set output because it errored");
+            console.error("didn't set output because it errored");
         }
 
         return parsed;
@@ -138,17 +144,27 @@ document.addEventListener("DOMContentLoaded", function( event ) {
     function evalFunctionReturnJson( code ) {
         try {
             //eval the result
-            var output = evalOutput = eval(code)();
-
-            //set the value of the results window
-            return JSON.stringify(output);
+            eval(code);
         } catch ( e ) {
             console.error(e);
         }
     }
 
+    /**
+     * Set the output of the result window
+     * @param text
+     */
     function setResultsWindow( text ) {
-        currentResultsWindow.setValue(text, 0);
+        if ( currentResultsWindow ) {
+            var row = currentResultsWindow.session.doc.getLength();
+                var len = text.length;
+                currentResultsWindow.session.doc.insert({row: row, column: 0}, text);
+                currentResultsWindow.session.doc.insert({row: row, column: len}, '\n');
+
+
+            //currentResultsWindow.session.doc.insertNewLine({row: row, column: 0});
+
+        }
     }
 
     /**
@@ -250,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                     }
 
                     //evaluate and set the result
-                    setResultsWindow(evalFunctionReturnJson(newVal));
+                    //evalFunctionReturnJson(newVal);
 
                 }
             });
