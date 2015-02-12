@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function( event ) {
 
+    //polyfills
 
     //This is terrible idea usually, but for our purposes, setup our own logging
     window.console.log = function( val ) {
@@ -155,6 +156,9 @@ document.addEventListener("DOMContentLoaded", function( event ) {
      * @param text
      */
     function setResultsWindow( text ) {
+        if (!text)
+            return;
+        
         if ( currentResultsWindow ) {
             var row = currentResultsWindow.session.doc.getLength();
                 var len = text.length;

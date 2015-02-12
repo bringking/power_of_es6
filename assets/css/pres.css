@@ -1,4 +1,22 @@
 
+.line {
+    border-left:2px solid #fff !important;
+    height:100%;
+    width:2px;
+    display:block;
+    position: absolute;
+    top:0;
+    left:12px;
+
+}
+.line:after{
+    content: "";
+    width:40px;
+    position: absolute;
+    top:50%;
+    left:12px;
+    border-bottom: 2px dotted #fff !important;
+}
 .svg-container {
     text-align: center;
 }
@@ -59,7 +77,7 @@
 .editor-output, .editor-output-header {
     right: 0%;
     left: 51%;
-    top: 37px;
+    top: 38px;
     bottom: 100px;
     transition: left 250ms ease-in;
 }
