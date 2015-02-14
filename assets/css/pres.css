@@ -60,7 +60,7 @@
 .editor-input, .editor-input-header {
     right: 51%;
     left: 0;
-    top: 37px;
+    top: 0;
     bottom: 100px;
     transition: left, right 250ms ease-in;
 }
@@ -77,7 +77,7 @@
 .editor-output, .editor-output-header {
     right: 0%;
     left: 51%;
-    top: 38px;
+    top: 0;
     bottom: 100px;
     transition: left 250ms ease-in;
 }
@@ -89,7 +89,7 @@
 [class*='editor-'] {
     position: absolute !important;
     text-align: left;
-    font: 20px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
+    font: 25px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
 }
 
 [class*='editor-'] .ace_cursor {

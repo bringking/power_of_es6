@@ -15,11 +15,6 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         return check;
     };
 
-    if ( mobilecheck() ) {
-        $('.editor-input-header small').hide();
-        $('.editor-output-header small').hide();
-    }
-
     var currentInputEditor, currentOutputEditor, currentResultsWindow, native;
 
     //attach click handler to expanders
@@ -59,14 +54,6 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         });
     }
 
-    $(".play").on("click", function() {
-        var newVal = getCurrentInputValue();
-        if ( newVal ) {
-            var results = evalFunctionReturnJson(newVal);
-            setResultsWindow(results);
-        }
-
-    });
 
     // Full list of configuration options available at:
     // https://github.com/hakimel/reveal.js#configuration
@@ -285,7 +272,21 @@ document.addEventListener("DOMContentLoaded", function( event ) {
     });
 
     Reveal.addEventListener('ready', function( event ) {
+
+        //insert our play button
+        var controls = $('.controls');
+        controls.append('<span style="cursor:pointer;top: 45px;left: 48px;font-size: 18px; position:absolute;" class="play">&#9654;</span>');
         setupEditors(event.currentSlide)
+
+
+    $(".play").on("click", function() {
+        var newVal = getCurrentInputValue();
+        if ( newVal ) {
+            var results = evalFunctionReturnJson(newVal);
+            setResultsWindow(results);
+        }
+
+    });
     });
 
 });
