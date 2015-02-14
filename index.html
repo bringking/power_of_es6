@@ -863,100 +863,7 @@
                 <small><a href="http://kangax.github.io/compat-table/es6/">Source - kangax</a></small>
             </p>
         </section>
-        <!-- arrow functions -->
-        <section>
-            <h3>Arrow functions </h3>
-
-            <p>
-                A function shorthand or Lambda using the fat-arrow " => " syntax.
-            </p>
-            <p>
-                No constructor!
-            </p>
-            <p>
-                Not just syntax sugar. Arrow functions automatically bind "this" from the containing scope.
-            </p>
-        </section>
-        <!-- arrow functions examples -->
-        <section class="full">
-
-            <div class="editor-input-header">
-                <h3>ES6
-                    <small><span class="play">&#9654; Run</span></small>
-                    <small><span class="expand">&#8596; Expand</span></small>
-                </h3>
-            </div>
-            <div class="editor-input expanded">
-//array
-var items = [1, 2, 3, 4];
-
-//expression bodies or lambda
-var byTwo = items.map((i) => i * 2);
-
-//with a block
-var byFour = items.map((i) => {
-    return i * 4;
-});
-
-//lexical this
-function Dog() {
-    this.name = "Dog";
-    this.nickNames = ["Fluffy", "Scruffy", "Biscuit"];
-    this.print = () => {
-        return this.nickNames.map((n) => {
-            return this.name + " is nicknamed " + n;
-        });
-    };
-}
-
-            </div>
-            <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5
-                    <small><span class="expand">&#8596;</span></small>
-                </h3>
-            </div>
-            <div class="editor-output">
-            </div>
-            <div class="editor-result-output"></div>
-        </section>
-        <!-- string templates -->
-        <section>
-            <h3>String templates </h3>
-
-            <p>
-                Allows for string literals with embedded expression interpolation.
-            </p>
-
-            <p>
-                Multi-line strings!
-            </p>
-        </section>
-        <!-- string templates examples -->
-        <section class="full">
-            <div class="editor-input-header">
-                <h3>ES6
-                    <small><span class="play">&#9654;</span></small>
-                    <small><span class="expand">&#8596;</span></small>
-                </h3>
-            </div>
-            <div class="editor-input expanded">
-//some vars
-var firstName = "Charlie",
-    lastName = "King";
-
-//return our string literal
-console.log(`${firstName} ${lastName} is talking about ES6 on ${ new Date().toISOString()}`);
-            </div>
-            <div class="editor-output-header" style="visibility:hidden;">
-                <h3>ES5
-                    <small><span class="expand">&#8596;</span></small>
-                </h3>
-            </div>
-            <div class="editor-output">
-            </div>
-            <div class="editor-result-output"></div>
-        </section>
-        <!-- Let scope -->
+                        <!-- Let scope -->
         <section>
             <h3>let scope</h3>
 
@@ -1015,20 +922,24 @@ console.log(x); // 31
                 </h3>
             </div>
             <div class="editor-input expanded">
-const apiBase = "http://mysite.com/api/v1";
+const apiBase = "https://mysite.com/api/v1";
 const clientId = "Adxk38dn3c9u1ndk";
 
 function createBaseUrl (url, id) {
-    return `${url}?clientId=${id}`
+    return url + "?clientId=" + clientId;
 }
 
 //block scoped
 if (true) {
-    const apiBase = "http://mysite.com/api/v2";
+
+    const apiBase = "https://othersite.com/api/v2"; 
+
+    console.log(createBaseUrl(apiBase,clientId)); 
+    //https://othersite.com/api/v2/Adxk38dn3c9u1ndk
 }
 
-//create url
-console.log(createBaseUrl(apiBase,clientId));
+console.log(createBaseUrl(apiBase,clientId)); 
+//https://mysite.com/api/v1/Adxk38dn3c9u1ndk
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5
@@ -1039,6 +950,114 @@ console.log(createBaseUrl(apiBase,clientId));
             </div>
             <div class="editor-result-output"></div>
         </section>
+        <!-- arrow functions -->
+        <section>
+            <h3>Arrow functions </h3>
+
+            <p>
+                A function shorthand or Lambda using the fat-arrow " => " syntax.
+            </p>
+            <p>
+                No constructor!
+            </p>
+            <p>
+                Not just syntax sugar. Arrow functions automatically bind "this" from the containing scope.
+            </p>
+        </section>
+        <!-- arrow functions examples -->
+        <section class="full">
+
+            <div class="editor-input-header">
+                <h3>ES6
+                    <small><span class="play">&#9654; Run</span></small>
+                    <small><span class="expand">&#8596; Expand</span></small>
+                </h3>
+            </div>
+            <div class="editor-input expanded">
+//array
+const items = [1, 2, 3, 4];
+
+//expression bodies or lambda
+let byTwo = items.map((i) => i * 2);
+
+//with a block
+let byFour = items.map((i) => {
+    return i * 4;
+});
+
+//lexical this
+function Dog() {
+    this.name = "Dog";
+    this.nickNames = ["Fluffy", "Scruffy", "Biscuit"];
+    this.print = () => {
+        return this.nickNames.map((n) => {
+            return this.name + " is nicknamed " + n;
+        });
+    };
+}
+
+console.log(new Dog().print());
+//["Dog is nicknamed Fluffy","Dog is nicknamed Scruffy",
+//"Dog is nicknamed Biscuit"]
+
+            </div>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5
+                    <small><span class="expand">&#8596;</span></small>
+                </h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output"></div>
+        </section>
+        <!-- string templates -->
+        <section>
+            <h3>String templates </h3>
+
+            <p>
+                Allows for string literals with embedded expression interpolation.
+            </p>
+
+            <p>
+                Multi-line strings!
+            </p>
+        </section>
+        <!-- string templates examples -->
+        <section class="full">
+            <div class="editor-input-header">
+                <h3>ES6
+                    <small><span class="play">&#9654;</span></small>
+                    <small><span class="expand">&#8596;</span></small>
+                </h3>
+            </div>
+            <div class="editor-input expanded">
+//define some classes
+const style = {
+    width: "25px",
+    height: "50px",
+    display: "inline-block"
+}
+
+//interpolate a literal string
+let tmpl = `
+&lt;div style=&quot;display:${style.display};&quot;&gt;
+    &lt;span style=&quot;width:${style.width};height:${style.height}&quot;&gt;Hi&lt;/span&gt;
+ &lt;/div &gt;
+`;
+
+//log our string literal
+console.log(tmpl);
+            </div>
+            <div class="editor-output-header" style="visibility:hidden;">
+                <h3>ES5
+                    <small><span class="expand">&#8596;</span></small>
+                </h3>
+            </div>
+            <div class="editor-output">
+            </div>
+            <div class="editor-result-output"></div>
+        </section>
+
         <!-- Destructuring assignments-->
         <section>
             <h3>Destructuring assignments</h3>
@@ -1174,11 +1193,12 @@ function getStaticUrl (resource, base = staticBase) {
 }
 
 //or arbitrary expressions
-function getThumb(resource, width, height, dpi = width*height/10 ) {
-
-    return `${staticBase}/${resource}?width=${width}&height=${height}&dpi=${dpi}`;
-
+function getThumb(resource, width, dpi = width/10 ) {
+    return `${staticBase}/${resource}?width=${width}&dpi=${dpi}`;
 }
+
+console.log(getStaticUrl("doc.pdf"));
+console.log(getThumb("image.jpg",200));
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
                 <h3>ES5
@@ -1211,14 +1231,14 @@ function getThumb(resource, width, height, dpi = width*height/10 ) {
                 </h3>
             </div>
             <div class="editor-input expanded">
-function fullName (firstName,lastName) {
-                return `${firstName} ${lastName}`;
+function getFullName (firstName,lastName) {
+    return `${firstName} ${lastName}`;
 }
 
 let names = ["Charles","King","James","King","Maggie","King"];
 
 //spread array as args
-var fullName = fullName(...names);
+let fullName = getFullName(...names);
 
 //combine with destruturing
 let [ cFirst, cLast, ...rest ] = names;
@@ -1232,7 +1252,7 @@ let start = [1,2,3];
 let end = [4,5,6];
 let more = [7,8,9];
 
-nd.unshift(...start);
+end.unshift(...start);
 end.push(...more);
             </div>
             <div class="editor-output-header" style="visibility:hidden;">
@@ -1459,7 +1479,7 @@ function* idMaker(idx) {
     while (true) {
 
         //get the value of next, and yield next index
-        let reset = yield index++;
+        var reset = yield index++;
 
         //did they ask for a reset?
         if (reset) {
@@ -1470,11 +1490,11 @@ function* idMaker(idx) {
 }
 
 //create new generator iterator, notice no 'new'
-let gen = idMaker();
+var gen = idMaker();
 
 //grab some IDs
 //each next returns > { value: val, done: false }
-let ids = [gen.next(), gen.next(), gen.next()];
+var ids = [gen.next(), gen.next(), gen.next()];
 
             </div>
             <div class="editor-result-output"></div>
@@ -1740,11 +1760,11 @@ m.get(Person) === "present";
 
 //iterable
 for (var v of m.values()) {
-    console.log(v);
+    console.log("value:" +v);
 }
 
 for (var k of m.keys()) {
-    console.log(k);
+    console.log("key:" + JSON.stringify(k));
 }
 
 //supports size, not length;
@@ -1851,6 +1871,7 @@ console.log(wm.has(Person) === true);
             </div>
             <div class="editor-input large native">
 var ws = new WeakSet();
+
 //create an obj
 const Person = {
     name: "Charlie"
