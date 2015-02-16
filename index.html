@@ -476,11 +476,25 @@ end.push(...more);
             <div class="editor-input expanded">
 //create a logger facade
 class Logger {
+    //constructor
     constructor (type = "Info") {
         this.type = type;
     }
+    //static methods
+    static create(type) {
+        return new this(type);
+    }
+    //getters
+    get getType() {
+        return this.type;
+    }
+    //and setters
+    set setType(value) {
+         this.type = value;
+    }
     log (message) {
         let msg = `%c ${new Date().toISOString()}: ${message}`;
+    
         switch (this.type) {
             case "Info":
                 console.log(msg,
@@ -504,7 +518,7 @@ class Logger {
 }
 
 //create an instance of our logger
-const debugLogger = new Logger("Debug");
+const debugLogger = Logger.create("Debug");
 debugLogger.log("Hello");
 
 //extend it
@@ -516,8 +530,11 @@ class ConfigurableLogger extends Logger {
 }
 
 //create instance of our configurable logger
-const cLogger = new ConfigurableLogger("Debug");
+const cLogger = ConfigurableLogger.create("Debug");
 cLogger.log("Configurable Logger", "Info");
+
+cLogger.log(cLogger instanceof ConfigurableLogger); // true
+cLogger.log(cLogger instanceof Logger); // true
 
             </div>
             <div class="editor-result-output"></div>
