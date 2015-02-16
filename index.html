@@ -338,9 +338,13 @@ function getName(args) {
 
 }
 
+console.log(getName(["Charlie", "King"]));
+
 //you can skip elements
 let items = [ 1,2,3,4,5 ];
 let [,second, third, fourth] = items;
+
+console.log([second,third,fourth]);
 
 //useful for selecting keys inside an expression
 let books = [
@@ -351,6 +355,8 @@ let books = [
 
 //grab just the names
 let bookNames = books.map( ({name}) => name);
+
+console.log(bookNames);
             </div>
             <div class="editor-result-output"></div>
         </section>
@@ -443,12 +449,18 @@ let names = ["Charles","King","James","King","Maggie","King"];
 //spread array as args
 let fullName = getFullName(...names);
 
+console.log(fullName);
+
 //combine with destruturing
 let [ cFirst, cLast, ...rest ] = names;
+
+console.log([cFirst,cLast,rest]);
 
 //or array literal concatenation
 let who = ["Spongebob","Squarepants"]
 let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
+
+console.log(song);
 
 //use for push and unshift
 let start = [1,2,3];
@@ -457,6 +469,8 @@ let more = [7,8,9];
 
 end.unshift(...start);
 end.push(...more);
+
+console.log(end);
             </div>
             <div class="editor-result-output"></div>
         </section>
