@@ -55,6 +55,9 @@
 
     <!-- Any section element inside of this container is displayed as a slide -->
     <div id="slides" class="slides">
+        <div id="code-arrow">
+            <span>&#10132;</span>
+        </div>
         <section>
             <h1>The power of ECMAScript 6</h1>
 
@@ -217,14 +220,14 @@ if (true) {
 
     const apiBase = "https://othersite.com/api/v2"; 
 
-    //console.log(createBaseUrl(apiBase,clientId)); 
+    console.log(createBaseUrl(apiBase,clientId)); 
     //https://othersite.com/api/v2/Adxk38dn3c9u1ndk
 }
 
 apiBase = "https://somewhereelse";
 //Syntax error - apiBase is read-only
 
-//console.log(createBaseUrl(apiBase,clientId)); 
+console.log(createBaseUrl(apiBase,clientId)); 
 //https://mysite.com/api/v1/Adxk38dn3c9u1ndk
             </div>
             <div class="editor-result-output"></div>
@@ -385,6 +388,11 @@ let name = "Charlie",
 const me = {
     name,
     age,
+    //old way
+    weight: function(){
+        return 86.1826;
+    },
+    //new hotness
     height() {
         return 180;
     }
@@ -393,6 +401,7 @@ const me = {
 //view the results
 console.log(me.name);
 console.log(me.age);
+console.log(me.weight());
 console.log(me.height());
 
             </div>
@@ -413,6 +422,7 @@ console.log(me.height());
         <!-- Default args examples-->
         <section class="full">
             <div class="editor-input expanded">
+//OMG default params
 function getApiUrl (resource, base = "http://b.com/api") {
     return `${base}/${resource}`;
 }
@@ -424,11 +434,12 @@ function getStaticUrl (resource, base = staticBase) {
     return `${base}/${resource}`;
 }
 
-//or arbitrary expressions
+//or arbitrary expressions!! 
 function getThumb(resource, width, dpi = width/10 ) {
     return `${staticBase}/${resource}?width=${width}&dpi=${dpi}`;
 }
 
+console.log(getApiUrl("image"));
 console.log(getStaticUrl("doc.pdf"));
 console.log(getThumb("image.jpg",200));
             </div>
@@ -459,18 +470,18 @@ let names = ["Charles","King","James","King","Maggie","King"];
 //spread array as args
 let fullName = getFullName(...names);
 
-//console.log(fullName);
+console.log(fullName);
 
 //combine with destruturing
 let [ cFirst, cLast, ...rest ] = names;
 
-//console.log([cFirst,cLast,rest]);
+console.log([cFirst,cLast,rest]);
 
 //or array literal concatenation
 let who = ["Spongebob","Squarepants"]
-let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
+let where = [...who, "lives in" a", "pineapple","under","the","sea"];
 
-//console.log(song);
+console.log(where);
 
 //use for push and unshift
 let start = [1,2,3];
@@ -478,9 +489,9 @@ let end = [4,5,6];
 let more = [7,8,9];
 
 end.unshift(...start);
-end.push(...more);`
-
-//console.log(end);
+end.push(...more);
+//tada
+console.log(end);
             </div>
             <div class="editor-result-output"></div>
         </section>
@@ -544,7 +555,7 @@ class Logger {
 
 //create an instance of our logger
 const debugLogger = Logger.create("Debug");
-//debugLogger.log("Hello");
+debugLogger.log("Hello");
 
 //extend it
 class ConfigurableLogger extends Logger {
@@ -556,10 +567,10 @@ class ConfigurableLogger extends Logger {
 
 //create instance of our configurable logger
 const cLogger = ConfigurableLogger.create("Debug");
-//cLogger.log("Configurable Logger", "Info");
+cLogger.log("Configurable Logger", "Info");
 
-//cLogger.log(cLogger instanceof ConfigurableLogger); // true
-//cLogger.log(cLogger instanceof Logger); // true
+cLogger.log(cLogger instanceof ConfigurableLogger); // true
+cLogger.log(cLogger instanceof Logger); // true
 
             </div>
             <div class="editor-result-output"></div>
@@ -585,6 +596,7 @@ const cLogger = ConfigurableLogger.create("Debug");
         <!-- Iterators examples -->
         <section class="full">
             <div class="editor-input expanded">               
+//obligatory fibonacci
 let fibonacci = {
   // notice the special Symbol.iterator key
   [Symbol.iterator]() {
@@ -617,33 +629,33 @@ for (var n of fibonacci) {
 //strings are iterable!                        
 const myName = "Charlie King";
 
-//so are arrays
+//so are arrays, as you would expect
 let myHeight = ['5','11'];
 
 //grab the chars
 for ( let char of myName ) {
-  //console.log(char);
+  console.log(char);
 }
 
 //grab the items in array
 for ( let item of myHeight ) {
-  //console.log(item);
+  console.log(item);
 }
 
 //spread needs iterables
-//console.log(`Spreading: ${[...myName]}`);
-//console.log(`Spreading: ${[...myHeight]}`);
+console.log(`Spreading: ${[...myName]}`);
+console.log(`Spreading: ${[...myHeight]}`);
 
 //so does destructing
 let [c,h,a] = [...myName];
-//console.log(`Destructuring ${c} ${h} ${a}`);
+console.log(`Destructuring ${c} ${h} ${a}`);
 
 //you can also grab the iterator
 let stringIterator = myName[Symbol.iterator]();
 
 for ( let i=0; i < 3; i++ ) {
 
-   // console.log( stringIterator.next() );
+   console.log( stringIterator.next() );
 
 }
             </div>
@@ -988,9 +1000,11 @@ console.log(s.size);
             <p>
                 Keys cannot be primitive types. Keys are objects and are "weakly" held
             </p>
+            <p><img src="assets/images/cartman.jpg"/></p>
         </section>
         <section class="full">
             <div class="editor-input large native">
+//Weak, ya super weak.
 var wm = new WeakMap();
 
 //create an obj
@@ -1791,7 +1805,6 @@ console.log(ws.has(Person) === true);
             </p>
         </section>
         <section>
-            <h3>Wrap up</h3>
             <p class="fragment">
                 ES6 brings powerful new features to JS
             </p>
@@ -1809,7 +1822,8 @@ console.log(ws.has(Person) === true);
 </div>
 
 <script src="assets/js/polyfill.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="assets/js/head.min.js"></script>
 <script src="assets/js/reveal.js"></script>
 <script src="assets/js/6to5/browser.js"></script>

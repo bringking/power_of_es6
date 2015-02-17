@@ -1,4 +1,17 @@
 
+#code-arrow {
+width: 50%;
+height: 728px;
+position: absolute;
+left: -50%;
+font-size:70px;
+cursor:pointer;
+}
+#code-arrow span {
+    visibilty: hidden;
+    position: absolute;
+    right:5px;
+}
 .line {
     border-left:2px solid #fff !important;
     height:100%;
@@ -85,8 +98,12 @@
 .editor-output.expanded {
     left: 0 !important;
 }
+.ace_line{
+    cursor: pointer !important;
+}
 
 [class*='editor-'] {
+    cursor:pointer !important;
     position: absolute !important;
     text-align: left;
     font: 25px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;

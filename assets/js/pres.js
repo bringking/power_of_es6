@@ -1,5 +1,25 @@
 document.addEventListener("DOMContentLoaded", function( event ) {
 
+    var codeArrowContainer = $("#code-arrow")
+    var codeArrow = codeArrowContainer.find("span");
+    function showArrow() {
+           codeArrow.css("opacity", 0);
+        codeArrow.css("visibility", "visible");
+        codeArrow.animate({"opacity":1},2000);
+
+
+    }
+    function hideArrow() {
+        codeArrow.css("visibility", "hidden");
+    }
+
+
+
+    //Code arrow
+    codeArrow.draggable({
+          axis: "y"
+    });
+
     //polyfills
 
     //This is terrible idea usually, but for our purposes, setup our own logging
@@ -15,44 +35,13 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         return check;
     };
 
-    var currentInputEditor, currentOutputEditor, currentResultsWindow, native;
+    var 
+    currentInputEditor, 
+    currentOutputEditor,
+     currentResultsWindow, 
+     native;
 
-    //attach click handler to expanders
-    var expanders = document.querySelectorAll(".expand");
-    for ( var i = 0; i < expanders.length; i++ ) {
-        var x = expanders[i];
-        x.addEventListener("click", function() {
 
-            var editor = this.offsetParent.nextElementSibling;
-            var parentHeader = $(this.offsetParent);
-
-            //find the other header
-            var otherHeader;
-            if ( parentHeader.hasClass("editor-input-header") ) {
-                otherHeader = $(parentHeader.siblings(".editor-output-header"));
-            } else {
-                otherHeader = $(parentHeader.siblings(".editor-input-header"));
-            }
-
-            //add classes to editor
-            if ( editor.classList.contains("expanded") ) {
-                editor.classList.remove("expanded");
-                otherHeader.css({visibility: "visible"});
-            } else {
-                editor.classList.add("expanded");
-                otherHeader.css({visibility: "hidden"});
-            }
-
-            //trigger resize
-            if ( currentInputEditor ) {
-                currentInputEditor.resize();
-            }
-            if ( currentOutputEditor ) {
-                currentOutputEditor.resize();
-            }
-
-        });
-    }
 
 
     // Full list of configuration options available at:
@@ -152,9 +141,6 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                 currentResultsWindow.session.doc.insert({row: row, column: 0}, text);
                 currentResultsWindow.session.doc.insert({row: row, column: len}, '\n');
 
-
-            //currentResultsWindow.session.doc.insertNewLine({row: row, column: 0});
-
         }
     }
 
@@ -172,9 +158,6 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         //get the input editor
         var foundInput = slideElement.querySelectorAll(".editor-input")[0];
 
-        //get the output editor
-        var foundOutput = slideElement.querySelectorAll(".editor-output")[0];
-
         //get the result editor
         var foundResult = slideElement.querySelectorAll(".editor-result-output")[0];
 
@@ -182,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function( event ) {
 
         //attach the ace editor
         if ( foundInput ) {
+            isEditorSlide = true;
+            showArrow();
             native = foundInput.className.indexOf("native") > -1;
             //don't use ace on mobile
             if ( isMobile ) {
@@ -206,28 +191,11 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                 input.renderer.setShowGutter(false);
                 input.setHighlightActiveLine(false);
             }
+        } else {
+                    hideArrow();
+            isEditorSlide = false;
         }
-        //attach the ace editor
-        if ( foundOutput ) {
 
-            //don't use ace on mobile
-            if ( isMobile ) {
-
-            } else {
-                output = ace.edit(foundOutput);
-                currentOutputEditor = output;
-                output.setTheme("ace/theme/monokai");
-                output.getSession().setMode("ace/mode/javascript");
-                output.getSession().setUseWrapMode(false);
-                output.setShowPrintMargin(false);
-                output.setDisplayIndentGuides(false);
-                output.renderer.setShowGutter(false);
-                output.setHighlightActiveLine(false);
-                //set the initial value
-                output.setValue(transformText(input.getValue()), 0);
-            }
-
-        }
 
         //attach the ace editor
         if ( foundResult && !isMobile ) {
@@ -256,9 +224,6 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                         output.setValue(newVal, 0);
                     }
 
-                    //evaluate and set the result
-                    //evalFunctionReturnJson(newVal);
-
                 }
             });
 
@@ -266,8 +231,11 @@ document.addEventListener("DOMContentLoaded", function( event ) {
 
     }
 
+
+
     //setup ace on change
     Reveal.addEventListener('slidechanged', function( event ) {
+
         setupEditors(event.currentSlide);
     });
 
@@ -276,17 +244,27 @@ document.addEventListener("DOMContentLoaded", function( event ) {
         //insert our play button
         var controls = $('.controls');
         controls.append('<span style="cursor:pointer;top: 45px;left: 48px;font-size: 18px; position:absolute;" class="play">&#9654;</span>');
+        hideArrow();
         setupEditors(event.currentSlide)
 
 
-    $(".play").on("click", function() {
-        var newVal = getCurrentInputValue();
-        if ( newVal ) {
-            var results = evalFunctionReturnJson(newVal);
-            setResultsWindow(results);
-        }
+        $(".play").on("click", function() {
+            var newVal = getCurrentInputValue();
+            if ( newVal ) {
+                var results = evalFunctionReturnJson(newVal);
+                setResultsWindow(results);
+            }
+
+        });
+
+
+ 
+
+
+
 
     });
-    });
+
+ 
 
 });
