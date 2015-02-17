@@ -217,11 +217,14 @@ if (true) {
 
     const apiBase = "https://othersite.com/api/v2"; 
 
-    console.log(createBaseUrl(apiBase,clientId)); 
+    //console.log(createBaseUrl(apiBase,clientId)); 
     //https://othersite.com/api/v2/Adxk38dn3c9u1ndk
 }
 
-console.log(createBaseUrl(apiBase,clientId)); 
+apiBase = "https://somewhereelse";
+//Syntax error - apiBase is read-only
+
+//console.log(createBaseUrl(apiBase,clientId)); 
 //https://mysite.com/api/v1/Adxk38dn3c9u1ndk
             </div>
             <div class="editor-result-output"></div>
@@ -293,11 +296,17 @@ const style = {
     height: "50px",
     display: "inline-block"
 }
+//arbitrary padding function
+function getPadding() {
+    return 44;
+}
 
 //interpolate a literal string
 let tmpl = `
-&lt;div style=&quot;display:${style.display};&quot;&gt;
-    &lt;span style=&quot;width:${style.width};height:${style.height}&quot;&gt;Hi&lt;/span&gt;
+&lt;div style=&quot;display:${style.display};padding:${getPadding()};&quot;&gt;
+    &lt;span style=&quot;width:${style.width};height:${style.height}&quot;&gt;
+        Hi it's ${new Date()}
+    &lt;/span&gt;
  &lt;/div &gt;
 `;
 
@@ -450,18 +459,18 @@ let names = ["Charles","King","James","King","Maggie","King"];
 //spread array as args
 let fullName = getFullName(...names);
 
-console.log(fullName);
+//console.log(fullName);
 
 //combine with destruturing
 let [ cFirst, cLast, ...rest ] = names;
 
-console.log([cFirst,cLast,rest]);
+//console.log([cFirst,cLast,rest]);
 
 //or array literal concatenation
 let who = ["Spongebob","Squarepants"]
 let song = ["Who","lives","in","a","pineapple","under","the","sea","?", ...who];
 
-console.log(song);
+//console.log(song);
 
 //use for push and unshift
 let start = [1,2,3];
@@ -469,9 +478,9 @@ let end = [4,5,6];
 let more = [7,8,9];
 
 end.unshift(...start);
-end.push(...more);
+end.push(...more);`
 
-console.log(end);
+//console.log(end);
             </div>
             <div class="editor-result-output"></div>
         </section>
@@ -535,7 +544,7 @@ class Logger {
 
 //create an instance of our logger
 const debugLogger = Logger.create("Debug");
-debugLogger.log("Hello");
+//debugLogger.log("Hello");
 
 //extend it
 class ConfigurableLogger extends Logger {
@@ -547,10 +556,10 @@ class ConfigurableLogger extends Logger {
 
 //create instance of our configurable logger
 const cLogger = ConfigurableLogger.create("Debug");
-cLogger.log("Configurable Logger", "Info");
+//cLogger.log("Configurable Logger", "Info");
 
-cLogger.log(cLogger instanceof ConfigurableLogger); // true
-cLogger.log(cLogger instanceof Logger); // true
+//cLogger.log(cLogger instanceof ConfigurableLogger); // true
+//cLogger.log(cLogger instanceof Logger); // true
 
             </div>
             <div class="editor-result-output"></div>
@@ -613,28 +622,28 @@ let myHeight = ['5','11'];
 
 //grab the chars
 for ( let char of myName ) {
-  console.log(char);
+  //console.log(char);
 }
 
 //grab the items in array
 for ( let item of myHeight ) {
-  console.log(item);
+  //console.log(item);
 }
 
 //spread needs iterables
-console.log(`Spreading: ${[...myName]}`);
-console.log(`Spreading: ${[...myHeight]}`);
+//console.log(`Spreading: ${[...myName]}`);
+//console.log(`Spreading: ${[...myHeight]}`);
 
 //so does destructing
 let [c,h,a] = [...myName];
-console.log(`Destructuring ${c} ${h} ${a}`);
+//console.log(`Destructuring ${c} ${h} ${a}`);
 
 //you can also grab the iterator
 let stringIterator = myName[Symbol.iterator]();
 
 for ( let i=0; i < 3; i++ ) {
 
-    console.log( stringIterator.next() );
+   // console.log( stringIterator.next() );
 
 }
             </div>
@@ -668,7 +677,7 @@ function* idMaker(idx) {
     while (true) {
 
         //get the value of next, and yield next index
-        const reset = yield index++;
+        var reset = yield index++;
 
         //did they ask for a reset?
         if (reset) {
@@ -683,8 +692,10 @@ const gen = idMaker();
 
 //grab some IDs
 //each next returns > { value: val, done: false }
-const ids = [gen.next(), gen.next(), gen.next()];
-console.log(ids);
+const ids = [gen.next(), gen.next(), gen.next(true)];
+
+console.log(ids); 
+
             </div>
             <div class="editor-result-output"></div>
         </section>
