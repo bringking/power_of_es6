@@ -261,9 +261,9 @@ let byFour = items.map((i) => {
 });
 
 //lexical this
-function Dog() {
-    this.name = "Dog";
-    this.nickNames = ["Fluffy", "Scruffy", "Biscuit"];
+function Person() {
+    this.name = "Charles";
+    this.nickNames = ["Charlie", "Chuck", "Chuckles"];
     this.print = () => {
         return this.nickNames.map((n) => {
             return this.name + " is nicknamed " + n;
@@ -271,9 +271,9 @@ function Dog() {
     };
 }
 
-console.log(new Dog().print());
-//["Dog is nicknamed Fluffy","Dog is nicknamed Scruffy",
-//"Dog is nicknamed Biscuit"]
+console.log(new Person().print());
+//["Charles is nicknamed Charlie","Charles is nicknamed Chuck",
+//"Charles is nicknamed Chuckles"]
 
             </div>
             <div class="editor-result-output"></div>
