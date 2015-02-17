@@ -434,7 +434,7 @@ function getStaticUrl (resource, base = staticBase) {
     return `${base}/${resource}`;
 }
 
-////OMGWTF arbitrary expressions in params!! 
+////OMGWTF expressions in params!! 
 function getThumb(resource, width, dpi = width/10 ) {
     return `${staticBase}/${resource}?width=${width}&dpi=${dpi}`;
 }
@@ -554,7 +554,7 @@ class Logger {
 }
 
 //create an instance of our logger
-const debugLogger = Logger.create("Debug");
+const debugLogger = new Logger("Debug");
 debugLogger.log("Hello");
 
 //extend it
