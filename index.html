@@ -355,6 +355,8 @@ console.log(getName(["Charlie", "King"]));
 
 //you can skip elements
 let items = [ 1,2,3,4,5 ];
+
+//new hotness
 let [,second, third, fourth] = items;
 
 console.log([second,third,fourth]);
@@ -366,9 +368,14 @@ let books = [
     { name: "The Principles of Object-Oriented JavaScript", ISBN:122663}
 ];
 
-//grab just the names
+//old way
+let bookISBNS = books.map(function(b){
+    return b.ISBN;
+});
+//new hotness
 let bookNames = books.map( ({name}) => name);
 
+console.log(bookISBNS);
 console.log(bookNames);
             </div>
             <div class="editor-result-output"></div>
@@ -1032,6 +1039,7 @@ console.log(wm.has(Person) === true);
         </section>
         <section class="full">
             <div class="editor-input large native">
+//weak set, bro                
 var ws = new WeakSet();
 
 //create an obj
@@ -1051,7 +1059,7 @@ console.log(ws.has(Person) === true);
             <ul>
                 <li>Symbols</li>
                 <li>Proxies</li>
-                <li>Block level functions (bad idea?)</li>
+                <li>Block level named functions (bad idea?)</li>
                 <li>Typed Arrays</li> 
                 <li>Reflect</li>
                 <li>New prototype methods ( String, Array, Number, Object)</li>
@@ -1086,7 +1094,7 @@ console.log(ws.has(Person) === true);
                     </td>
 
                     <td>Tech preview</td>
-                    <td>62%</td>
+                    <td>70%</td>
                 </tr>
                 <tr>
                     <td>
@@ -1644,7 +1652,7 @@ console.log(ws.has(Person) === true);
                         </div>
                     </td>
                     <td>37 (Nightly), 36 (Dev), 35 (Normal)</td>
-                    <td>61%, 59%, 52%</td>
+                    <td>65%, 63%, 57%</td>
                 </tr>
            
                 <tr>
@@ -1685,7 +1693,7 @@ console.log(ws.has(Person) === true);
                             </svg>
                         </div>
                     <td>42 (Chromium Dev), 41 (Chromium Beta), 40 (Chrome)</td>
-                    <td>43%, 42%, 29% </td>
+                    <td>44%, 43%, 30% </td>
                 </tr>
                 <tr>
                     <td>
@@ -1694,7 +1702,7 @@ console.log(ws.has(Person) === true);
                         </div>
                     </td>
                     <td>8 (mobile and desktop)</td>
-                    <td>17%</td>
+                    <td>20%</td>
                 </tr>
                 </tbody>
             </table>
@@ -1732,7 +1740,7 @@ console.log(ws.has(Person) === true);
   </g>
 </svg></td>
                     <td>0.12.0</td>
-                    <td>26%</td>
+                    <td>25%</td>
                 </tr>
                
                 </tbody>
@@ -1759,7 +1767,7 @@ console.log(ws.has(Person) === true);
                           <img src="assets/images/babel.png" height="90px" style="border:none; background:none;">
                         </div>
                     </td>
-                    <td>73%</td>
+                    <td>78%</td>
                     <td><a href="https://babeljs.io/">https://babeljs.io/</a></td>
                 </tr>
                 <tr>
@@ -1772,7 +1780,7 @@ console.log(ws.has(Person) === true);
                             </svg>
                         </div>
                     </td>
-                    <td>57%</td>
+                    <td>65%</td>
                     <td>
                         <a href="https://github.com/google/traceur-compiler">https://github.com/google/traceur-compiler</a>
                     </td>
@@ -1790,12 +1798,12 @@ console.log(ws.has(Person) === true);
                             </svg>
                         </div>
                     </td>
-                    <td>8%</td>
+                    <td>13%</td>
                     <td><a href="http://facebook.github.io/react/">http://facebook.github.io/react/</a></td>
                 </tr>
                 <tr>
                     <td><span style="color:#428bca;font-size:24px;">TypeScript</span></td>
-                    <td>7%</td>
+                    <td>9%</td>
                     <td><a href="http://www.typescriptlang.org/">http://www.typescriptlang.org/</a></td>
                 </tr>
                 </tbody>
