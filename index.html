@@ -208,26 +208,23 @@ console.log(x); // 31
         <!-- const examples -->
         <section class="full">
             <div class="editor-input expanded">
-const apiBase = "https://mysite.com/api/v1";
+const apiBase = "https://mysite.com/api/v1/";
 const clientId = "Adxk38dn3c9u1ndk";
 
-function createBaseUrl (url, id) {
-    return url + "?clientId=" + clientId;
-}
 
 //block scoped
 if (true) {
 
-    const apiBase = "https://othersite.com/api/v2"; 
+    const apiBase = "https://othersite.com/api/v2/"; 
 
-    console.log(createBaseUrl(apiBase,clientId)); 
-    //https://othersite.com/api/v2/Adxk38dn3c9u1ndk
+    console.log(apiBase + clientId); 
+    //https://othersite.com/api/v2
 }
 
 apiBase = "https://somewhereelse";
 //Syntax error - apiBase is read-only
 
-console.log(createBaseUrl(apiBase,clientId)); 
+console.log(apiBase+clientId); 
 //https://mysite.com/api/v1/Adxk38dn3c9u1ndk
             </div>
             <div class="editor-result-output"></div>
