@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                 }
 
             } else {
+                showArrow();
                 input = ace.edit(foundInput);
                 currentInputEditor = input;
                 input.setTheme("ace/theme/monokai");
@@ -192,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function( event ) {
                 input.setHighlightActiveLine(false);
             }
         } else {
-                    hideArrow();
+            hideArrow();
             isEditorSlide = false;
         }
 
