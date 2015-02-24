@@ -250,10 +250,10 @@ console.log(apiBase+clientId);
 const items = [1, 2, 3, 4];
 
 //expression bodies or lambda
-let byTwo = items.map((i) => i * 2);
+let byTwo = items.map(i => i * 2);
 
 //with a block
-let byFour = items.map((i) => {
+let byFour = items.map(i => {
     return i * 4;
 });
 
@@ -525,12 +525,12 @@ class Logger {
         return new this(type);
     }
     //getters
-    get getType() {
-        return this.type;
+    get current() {
+      return `Logger: ${this.type}`;
     }
     //and setters
-    set setType(value) {
-         this.type = value;
+    set current(type) {
+        this.type = type;
     }
     log (message) {
         let msg = `%c ${new Date().toISOString()}: ${message}`;
@@ -560,9 +560,14 @@ class Logger {
 //create an instance of our logger
 const debugLogger = new Logger("Debug");
 debugLogger.log("Hello");
+debugLogger.log(debugLogger.current);
 
 //extend it
 class ConfigurableLogger extends Logger {
+    //getters
+    get current() {
+      return `ConfigurableLogger: ${this.type}`;
+    }
     log (message, type) {
         this.type = type;
         super.log(message);
@@ -572,6 +577,7 @@ class ConfigurableLogger extends Logger {
 //create instance of our configurable logger
 const cLogger = ConfigurableLogger.create("Debug");
 cLogger.log("Configurable Logger", "Info");
+cLogger.log(cLogger.current);
 
 cLogger.log(cLogger instanceof ConfigurableLogger); // true
 cLogger.log(cLogger instanceof Logger); // true
@@ -1777,7 +1783,7 @@ console.log(ws.has(Person) === true);
                             </svg>
                         </div>
                     </td>
-                    <td>65%</td>
+                    <td>66%</td>
                     <td>
                         <a href="https://github.com/google/traceur-compiler">https://github.com/google/traceur-compiler</a>
                     </td>
